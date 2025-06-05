@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Notification Statuses</title>
+</head>
+<body>
+<h2>Notification Statuses</h2>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Status</th>
+        <th>Timestamp</th>
+        <th>Customer ID</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="status : ${statuses}">
+        <td th:text="${status.id}"></td>
+        <td th:text="${status.status}"></td>
+        <td th:text="${#dates.format(status.timestamp, 'yyyy-MM-dd HH:mm:ss')}"></td>
+        <td th:text="${status.customUser != null ? status.customUser.id : ''}"></td>
+        <td>
+            <a th:href="@{'/statuses/edit/' + ${status.id}}">Edit</a>
+            <form th:action="@{'/statuses/delete/' + ${status.id}}" method="post" style="display:inline">
+                <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+            </form>
+        </td>
+    </tr>
+</table>
+<a th:href="@{/statuses/new}">Add New Status</a>
+</body>
+</html>

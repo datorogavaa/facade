@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${adminUser.id != null} ? 'Edit Admin' : 'New Admin'"></title>
+</head>
+<body>
+<h2 th:text="${adminUser.id != null} ? 'Edit Admin User' : 'New Admin User'"></h2>
+<form th:action="@{${adminUser.id != null} ? '/admin-users/edit/' + ${adminUser.id} : '/admin-users/new'}" method="post">
+    <label>Username: <input type="text" name="username" th:value="${adminUser.username}" required/></label><br/>
+    <label>Password: <input type="password" name="password" th:placeholder="${adminUser.id != null} ? 'Leave empty to keep current password' : ''"/></label><br/>
+    <button type="submit">Submit</button>
+</form>
+<a th:href="@{/admin-users}">Back to List</a>
+</body>
+</html>

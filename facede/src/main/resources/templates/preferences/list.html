@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Notification Preferences</title>
+</head>
+<body>
+<h2>Notification Preferences</h2>
+<table border="1">
+  <tr>
+    <th>ID</th><th>Email</th><th>SMS</th><th>Postal</th><th>Customer ID</th><th>Actions</th>
+  </tr>
+  <tr th:each="pref : ${preferences}">
+    <td th:text="${pref.username}"></td>
+    <td th:text="${pref.emailEnabled}"></td>
+    <td th:text="${pref.smsEnabled}"></td>
+    <td th:text="${pref.postalEnabled}"></td>
+    <td th:text="${pref.customUser.id}"></td>
+    <td>
+      <a th:href="@{'/preferences/edit/' + ${pref.id}}">Edit</a>
+      <form th:action="@{'/preferences/delete/' + ${pref.id}}" method="post" style="display:inline">
+        <button type="submit">Delete</button>
+      </form>
+    </td>
+  </tr>
+</table>
+<a th:href="@{/preferences/new}">Add New Preference</a>
+</body>
+</html>
