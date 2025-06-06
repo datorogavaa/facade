@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Create Status</title></head>
 <body>
-$END$
+<h2>Create Notification Status</h2>
+<form th:action="@{/statuses}" th:object="${status}" method="post">
+  <label>Status: <input type="text" th:field="*{status}" /></label><br/>
+  <label>Timestamp: <input type="datetime-local" th:field="*{timestamp}" /></label><br/>
+  <label>User:
+    <select th:field="*{customUser.id}">
+      <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.name}"></option>
+    </select>
+  </label><br/>
+  <button type="submit">Save</button>
+</form>
 </body>
 </html>

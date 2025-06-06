@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <title>Notification Preferences</title>
-</head>
+<head><meta charset="UTF-8"><title>Notification Preferences</title></head>
 <body>
 <h2>Notification Preferences</h2>
-<table border="1">
+<a th:href="@{/notification-preferences/new}">Add Preference</a>
+<table>
   <tr>
-    <th>ID</th><th>Email</th><th>SMS</th><th>Postal</th><th>Customer ID</th><th>Actions</th>
+    <th>ID</th>
+    <th>User</th>
+    <th>Email Opt-In</th>
+    <th>SMS Opt-In</th>
+    <th>Promotions</th>
+    <th>Actions</th>
   </tr>
-  <tr th:each="pref : ${preferences}">
-    <td th:text="${pref.username}"></td>
-    <td th:text="${pref.emailEnabled}"></td>
-    <td th:text="${pref.smsEnabled}"></td>
-    <td th:text="${pref.postalEnabled}"></td>
-    <td th:text="${pref.customUser.id}"></td>
+  <tr th:each="preference : ${preferences}">
+    <td th:text="${preference.id}"></td>
+    <td th:text="${preference.customUser.name}"></td>
+    <td th:text="${preference.emailOptIn}"></td>
+    <td th:text="${preference.smsOptIn}"></td>
+    <td th:text="${preference.promotionalOptIn}"></td>
     <td>
-      <a th:href="@{'/preferences/edit/' + ${pref.id}}">Edit</a>
-      <form th:action="@{'/preferences/delete/' + ${pref.id}}" method="post" style="display:inline">
+      <a th:href="@{'/notification-preferences/edit/' + ${preference.id}}">Edit</a>
+      <form th:action="@{'/notification-preferences/delete/' + ${preference.id}}" method="post" style="display:inline;">
         <button type="submit">Delete</button>
       </form>
     </td>
   </tr>
 </table>
-<a th:href="@{/preferences/new}">Add New Preference</a>
 </body>
 </html>

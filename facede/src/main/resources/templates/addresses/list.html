@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><title>Addresses</title></head>
+<head><meta charset="UTF-8"><title>Addresses</title></head>
 <body>
 <h2>Addresses</h2>
-<table border="1">
+<a th:href="@{/addresses/new}">Add Address</a>
+<table>
   <tr><th>ID</th><th>Type</th><th>Value</th><th>User</th><th>Actions</th></tr>
   <tr th:each="address : ${addresses}">
     <td th:text="${address.id}"></td>
     <td th:text="${address.type}"></td>
     <td th:text="${address.value}"></td>
-    <td th:text="${address.customUser.username}"></td>
+    <td th:text="${address.customUser.name}"></td>
     <td>
-      <a th:href="@{'/addresses/edit/' + ${address.id}}">Edit</a>
-      <form th:action="@{'/addresses/delete/' + ${address.id}}" method="post" style="display:inline">
-        <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
-      </form>
+      <a th:href="@{'/addresses/edit/' + ${address.id}}">Edit</a> |
+      <a th:href="@{'/addresses/delete/' + ${address.id}}">Delete</a>
     </td>
   </tr>
 </table>
-<a th:href="@{/addresses/new}">Add Address</a>
 </body>
 </html>
