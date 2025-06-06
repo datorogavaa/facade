@@ -19,13 +19,13 @@ public class AdminUserViewController {
     @GetMapping
     public String listAdmins(Model model) {
         model.addAttribute("admins", adminUserService.getAllAdmins());
-        return "admins/list";
+        return "admin/list";
     }
 
     @GetMapping("/new")
     public String showCreateForm(Model model) {
         model.addAttribute("admin", new AdminUser());
-        return "admins/create";
+        return "admin/create";
     }
 
     @PostMapping

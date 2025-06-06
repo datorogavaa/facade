@@ -5,7 +5,7 @@
 <h2>Addresses</h2>
 <a th:href="@{/addresses/new}">Add Address</a>
 <table>
-  <tr><th>ID</th><th>Type</th><th>Value</th><th>User</th><th>Actions</th></tr>
+  <tr><th>ID</th><th>Type</th><th>Value</th><th>User</th></tr>
   <tr th:each="address : ${addresses}">
     <td th:text="${address.id}"></td>
     <td th:text="${address.type}"></td>
