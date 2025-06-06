@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Admin Dashboard</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    nav {
+        margin-bottom: 20px;
+    }
+    nav a {
+        margin-right: 15px;
+        text-decoration: none;
+        color: #2c3e50;
+        font-weight: bold;
+    }
+    nav a:hover {
+        color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+<h1>Welcome to Admin Dashboard</h1>
+
+<nav>
+  <a th:href="@{/users}">Users List</a>
+  <a th:href="@{/logout}">Logout</a>
+</nav>
+
+<p>Use the links above to manage users and admin accounts.</p>
+</body>
+</html>

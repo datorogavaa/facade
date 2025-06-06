@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${admin.id != null} ? 'Edit Admin' : 'New Admin'">Admin Form</title>
+</head>
+<body>
+<h2 th:text="${admin.id != null} ? 'Edit Admin User' : 'New Admin User'"></h2>
+
+<form th:action="@{${admin.id != null} ? '/admins/update' : '/admins'}" method="post">
+    <!-- Hidden input for ID (used when editing) -->
+    <input type="hidden" th:if="${admin.id != null}" th:name="id" th:value="${admin.id}" />
+
+    <label>Username:
+        <input type="text" name="username" th:value="${admin.username}" required />
+    </label><br/>
+
+    <label>Password:
+        <input type="password" name="password"
+               th:placeholder="${admin.id != null} ? 'Leave empty to keep current password' : ''" />
+    </label><br/>
+
+    <button type="submit">Submit</button>
+</form>
+
+<a th:href="@{/admins}">Back to List</a>
+</body>
+</html>
