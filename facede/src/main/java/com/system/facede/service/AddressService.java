@@ -24,7 +24,7 @@ public class AddressService {
     }
 
     public List<Address> getByCustomerUserId(Long customerUserId) {
-        return addressRepository.findByCustomerUserId(customerUserId);
+        return addressRepository.findByCustomUserId(customerUserId);
     }
 
     public Address save(Address address) {

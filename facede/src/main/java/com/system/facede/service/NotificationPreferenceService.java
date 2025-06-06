@@ -24,7 +24,7 @@ public class NotificationPreferenceService {
     }
 
     public Optional<NotificationPreference> getByCustomerUserId(Long customerUserId) {
-        return repository.findByCustomerUserId(customerUserId);
+        return repository.findByCustomUserId(customerUserId);
     }
 
     public NotificationPreference save(NotificationPreference preference) {

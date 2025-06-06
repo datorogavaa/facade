@@ -5,5 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface AddressRepository extends JpaRepository<Address, Long> {
-    List<Address> findByCustomerUserId(Long customerUserId);
+    List<Address> findByCustomUserId(Long customUserId);
 }
+

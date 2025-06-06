@@ -23,8 +23,8 @@ public class NotificationStatusService {
         return repository.findById(id);
     }
 
-    public List<NotificationStatus> getByCustomerUserId(Long customerUserId) {
-        return repository.findByCustomerUserId(customerUserId);
+    public List<NotificationStatus> getByCustomUserId(Long customUserId) {
+        return repository.findByCustomUserId(customUserId);
     }
 
     public NotificationStatus save(NotificationStatus status) {

@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface NotificationStatusRepository extends JpaRepository<NotificationStatus, Long> {
-    List<NotificationStatus> findByCustomerUserId(Long customerUserId);
+    List<NotificationStatus> findByCustomUserId(Long customUserId);
 }

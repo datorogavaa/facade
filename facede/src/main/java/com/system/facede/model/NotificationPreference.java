@@ -10,7 +10,7 @@ public class NotificationPreference {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "customer_user_id", nullable = false)
+    @JoinColumn(name = "custom_user_id", nullable = false)
     private CustomUser customUser;
 
     private boolean emailEnabled = false;

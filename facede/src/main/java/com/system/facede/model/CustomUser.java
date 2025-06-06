@@ -21,10 +21,10 @@ public class CustomUser {
 
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "customerUser", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "customUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Address> addresses;
 
-    @OneToOne(mappedBy = "customerUser", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "customUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private NotificationPreference notificationPreference;
 
     // Getters and setters

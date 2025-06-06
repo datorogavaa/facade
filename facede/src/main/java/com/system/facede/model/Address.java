@@ -17,7 +17,7 @@ public class Address {
     private String value;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_user_id")
+    @JoinColumn(name = "custom_user_id")
     private CustomUser customUser;
 
     // Getters and setters

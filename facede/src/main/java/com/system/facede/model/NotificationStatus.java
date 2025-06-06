@@ -11,7 +11,7 @@ public class NotificationStatus {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_user_id")
+    @JoinColumn(name = "custom_user_id")
     private CustomUser customUser;
 
     private String channel; // EMAIL, SMS, POSTAL, etc.
