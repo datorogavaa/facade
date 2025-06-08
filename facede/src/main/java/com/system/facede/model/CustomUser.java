@@ -1,5 +1,6 @@
 package com.system.facede.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -21,9 +22,13 @@ public class CustomUser {
 
     private String phoneNumber;
 
+
+    @JsonManagedReference
     @OneToMany(mappedBy = "customUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Address> addresses;
 
+
+    @JsonManagedReference
     @OneToOne(mappedBy = "customUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private NotificationPreference notificationPreference;
 

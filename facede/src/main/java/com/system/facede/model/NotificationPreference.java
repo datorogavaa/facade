@@ -1,5 +1,6 @@
 package com.system.facede.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -9,6 +10,8 @@ public class NotificationPreference {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    @JsonBackReference
     @OneToOne
     @JoinColumn(name = "custom_user_id", nullable = false)
     private CustomUser customUser;

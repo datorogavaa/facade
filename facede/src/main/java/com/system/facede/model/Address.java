@@ -1,5 +1,6 @@
 package com.system.facede.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
@@ -16,6 +17,9 @@ public class Address {
     @NotBlank(message = "Input must not be empty")
     private String value;
 
+
+
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "custom_user_id")
     private CustomUser customUser;
