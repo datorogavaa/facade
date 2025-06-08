@@ -3,7 +3,7 @@
 <head><meta charset="UTF-8"><title>Admins</title></head>
 <body>
 <h2>Admin List</h2>
-<a th:href="@{/admins/new}">Add Admin</a>
+<a th:href="@{/admin/new}">Add Admin</a>
 <table>
   <tr><th>ID</th><th>Username</th><th>Actions</th></tr>
   <tr th:each="admin : ${admins}">

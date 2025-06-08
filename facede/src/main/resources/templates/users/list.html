@@ -5,16 +5,19 @@
 <h2>Users</h2>
 <a th:href="@{/users/new}">Add User</a>
 <table>
-  <tr><th>ID</th><th>Name</th><th>Email</th></tr>
+  <tr><th>ID</th><th>Name</th><th>Email</th>    <th>Phone Number</th></tr>
   <tr th:each="user : ${users}">
     <td th:text="${user.id}"></td>
     <td th:text="${user.name}"></td>
     <td th:text="${user.email}"></td>
+    <td th:text="${user.phoneNumber}"></td>
+
     <td>
       <a th:href="@{'/users/edit/' + ${user.id}}">Edit</a> |
       <a th:href="@{'/users/delete/' + ${user.id}}">Delete</a>
     </td>
   </tr>
 </table>
+<a th:href="@{/admin/dashboard}">Back To Dashboard</a>
 </body>
 </html>

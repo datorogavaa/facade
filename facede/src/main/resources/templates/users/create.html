@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8"><title>Create User</title></head>
+<head>
+    <meta charset="UTF-8">
+    <title>Create User</title>
+</head>
 <body>
-<h2>Create User</h2>
+<h2>Create New User</h2>
+
 <form th:action="@{/users}" th:object="${user}" method="post">
-    <label>Name: <input type="text" th:field="*{name}" /></label><br/>
-    <label>Email: <input type="email" th:field="*{email}" /></label><br/>
-    <button type="submit">Save</button>
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}" placeholder="Enter name" required />
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" th:field="*{email}" placeholder="Enter email" required />
+    </div>
+    <div>
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" id="phoneNumber" th:field="*{phoneNumber}" placeholder="Enter phone number" />
+    </div>
+    <div>
+        <button type="submit">Save</button>
+        <a th:href="@{/users}">Cancel</a>
+    </div>
 </form>
+<a th:href="@{/admin/dashboard}">Back To Dashboard</a>
 </body>
 </html>

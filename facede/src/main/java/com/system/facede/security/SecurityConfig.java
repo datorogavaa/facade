@@ -23,13 +23,14 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers( "/addresses/**",
-                                "/notification-preferences/**",
-                                "/statuses/**",
-                                "/users/**",
-                                "/admin/**",
-                                "/css/**",
+                        .requestMatchers("/css/**",
                                 "/js/**").permitAll()
+                        .requestMatchers("/admin/new","/admin/create","/admin/login").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                                .requestMatchers("/addresses/**").hasRole("ADMIN")
+                        .requestMatchers("/statuses/**").hasRole("ADMIN")
+                        .requestMatchers("/users/**").hasRole("ADMIN")
+                        .requestMatchers("/notification-preferences/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

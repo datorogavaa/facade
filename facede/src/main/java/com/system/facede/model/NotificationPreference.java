@@ -24,6 +24,10 @@ public class NotificationPreference {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public CustomUser getCustomUser() {
         return customUser;
     }

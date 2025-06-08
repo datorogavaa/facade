@@ -3,7 +3,7 @@
 <head><meta charset="UTF-8"><title>Create Admin</title></head>
 <body>
 <h2>Create Admin</h2>
-<form th:action="@{/admins}" th:object="${admin}" method="post">
+<form th:action="@{/admin}" th:object="${admin}" method="post">
   <label>Username: <input type="text" th:field="*{username}" /></label><br/>
   <label>Password: <input type="password" th:field="*{password}" /></label><br/>
   <button type="submit">Save</button>

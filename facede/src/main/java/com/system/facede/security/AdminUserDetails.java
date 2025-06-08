@@ -20,6 +20,9 @@ public class AdminUserDetails implements UserDetails {
         return Collections.singleton(() -> "ROLE_ADMIN");
     }
 
+    public AdminUser getAdminUser() {
+        return this.adminUser;
+    }
     @Override
     public String getPassword() {
         return adminUser.getPassword();

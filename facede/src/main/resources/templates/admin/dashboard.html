@@ -6,13 +6,16 @@
 </head>
 <body>
 <h1>Welcome to the Admin Dashboard</h1>
+
 <nav>
-  <a th:href="@{/admins}">Manage Admins</a> |
   <a th:href="@{/users}">Manage Users</a> |
   <a th:href="@{/addresses}">Manage Addresses</a> |
   <a th:href="@{/notification-preferences}">Manage Preferences</a> |
-  <a th:href="@{/statuses}">Notification Statuses</a> |
+  <a th:href="@{/notification-statuses}">Notification Statuses</a> |
+  <a th:href="@{/admin/edit}">Reset Password / Edit Account</a> |
+  <a th:href="@{/admin/delete/{id}(id=${admin.id})}">Delete Account</a>
   <a th:href="@{/logout}">Logout</a>
 </nav>
+
 </body>
 </html>

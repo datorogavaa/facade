@@ -5,15 +5,20 @@
 <h2>Edit Notification Preference</h2>
 <form th:action="@{'/notification-preferences/edit/' + ${preference.id}}" th:object="${preference}" method="post">
   <input type="hidden" th:field="*{id}" />
-  <label>Email Opt-In: <input type="checkbox" th:field="*{emailOptIn}" /></label><br/>
-  <label>SMS Opt-In: <input type="checkbox" th:field="*{smsOptIn}" /></label><br/>
-  <label>Promotional Messages: <input type="checkbox" th:field="*{promotionalOptIn}" /></label><br/>
+
+  <label>Email Opt-In: <input type="checkbox" th:field="*{emailEnabled}" /></label><br/>
+  <label>SMS Opt-In: <input type="checkbox" th:field="*{smsEnabled}" /></label><br/>
+  <label>Postal Opt-In: <input type="checkbox" th:field="*{postalEnabled}" /></label><br/>
+
   <label>User:
     <select th:field="*{customUser.id}">
       <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.name}"></option>
     </select>
   </label><br/>
+
   <button type="submit">Update</button>
 </form>
+<a th:href="@{/admin/dashboard}">Back To Dashboard</a>
+
 </body>
 </html>

@@ -18,7 +18,8 @@
             <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.name}"></option>
         </select>
     </label><br/>
-    <button type="submit">Update</button>
+    <button type="submit">Create</button>
 </form>
+<a th:href="@{/admin/dashboard}">Back To Dashboard</a>
 </body>
 </html>

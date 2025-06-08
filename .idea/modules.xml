@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/facede/facede.iml" filepath="$PROJECT_DIR$/facede/facede.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/facede.iml" filepath="$PROJECT_DIR$/.idea/facede.iml" />
     </modules>
   </component>
 </project>

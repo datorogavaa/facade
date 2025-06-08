@@ -5,13 +5,46 @@
   <title>Admin Login</title>
 </head>
 <body>
-<h2>Login</h2>
-<form th:action="@{/admin/login}" method="post">
-  <label for="username">Username:</label>
-  <input type="text" name="username" id="username"/><br/>
-  <label for="password">Password:</label>
-  <input type="password" name="password" id="password"/><br/>
+<h2>Admin Login</h2>
+
+<!-- Shows error if login fails -->
+<div th:if="${param.error}" style="color: red; font-weight: bold; margin-bottom: 10px;">
+  Invalid username or password
+</div>
+
+<!-- Optional: Logout message -->
+<div th:if="${param.logout}" style="color: green; margin-bottom: 10px;">
+  You have been logged out successfully.
+</div>
+
+<!-- Login form -->
+<form th:action="@{/admin/login}" method="post" onsubmit="return validateLoginForm()">
+  <label>Username: <input type="text" name="username" id="username" /></label><br/>
+  <label>Password: <input type="password" name="password" id="password" /></label><br/>
   <button type="submit">Login</button>
 </form>
+
+<!-- Link to create new admin -->
+<p>Don't have an account? <a th:href="@{/admin/new}">Create a new admin</a></p>
+
+<!-- JavaScript validation -->
+<script>
+  function validateLoginForm() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if (!username) {
+          alert("Username is empty");
+          return false;
+      }
+      if (!password) {
+          alert("Password is empty");
+          return false;
+      }
+
+      return true;
+  }
+</script>
+
 </body>
 </html>

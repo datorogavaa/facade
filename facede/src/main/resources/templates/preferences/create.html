@@ -1,18 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8"><title>Create Preference</title></head>
+<head>
+  <title>Notification Preferences Form</title>
+</head>
 <body>
-<h2>Create Notification Preference</h2>
-<form th:action="@{/notification-preferences}" th:object="${preference}" method="post">
-  <label>Email Opt-In: <input type="checkbox" th:field="*{emailOptIn}" /></label><br/>
-  <label>SMS Opt-In: <input type="checkbox" th:field="*{smsOptIn}" /></label><br/>
-  <label>Promotional Messages: <input type="checkbox" th:field="*{promotionalOptIn}" /></label><br/>
-  <label>User:
-    <select th:field="*{customUser.id}">
-      <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.name}"></option>
-    </select>
+<h1>Update Notification Preferences</h1>
+
+<form th:action="@{/notification-preferences/create}" th:object="${preference}" method="post">
+  <input type="hidden" th:field="*{id}" />
+
+  <label for="customUser">User:</label>
+  <select th:field="*{customUser.id}" id="customUser">
+    <option th:each="user : ${users}"
+            th:value="${user.id}"
+            th:text="${user.name}">User</option>
+  </select>
+  <br/><br/>
+
+  <label>
+    <input type="checkbox" th:field="*{emailEnabled}" /> Email Notifications
   </label><br/>
+
+  <label>
+    <input type="checkbox" th:field="*{smsEnabled}" /> SMS Notifications
+  </label><br/>
+
+  <label>
+    <input type="checkbox" th:field="*{postalEnabled}" /> Postal Notifications
+  </label><br/><br/>
+
   <button type="submit">Save</button>
 </form>
+<a th:href="@{/admin/dashboard}">Back To Dashboard</a>
 </body>
 </html>

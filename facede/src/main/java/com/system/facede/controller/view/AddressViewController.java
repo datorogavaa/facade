@@ -4,9 +4,11 @@ import com.system.facede.model.Address;
 import com.system.facede.model.CustomUser;
 import com.system.facede.service.AddressService;
 import com.system.facede.service.CustomUserService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 
 @Controller
 @RequestMapping("/addresses")
@@ -20,11 +22,13 @@ public class AddressViewController {
         this.customUserService = customUserService;
     }
 
+
     @GetMapping
     public String listAddresses(Model model) {
         model.addAttribute("addresses", addressService.getAll());
         return "addresses/list";
     }
+
 
     @GetMapping("/new")
     public String showCreateForm(Model model) {

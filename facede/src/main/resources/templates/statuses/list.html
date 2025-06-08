@@ -6,24 +6,39 @@
 </head>
 <body>
 <h2>Notification Statuses</h2>
-<a th:href="@{/statuses/new}">Add Status</a>
-<table>
+
+<a th:href="@{/notification-statuses/new}">Add Status</a>
+
+<table border="1">
+    <thead>
     <tr>
         <th>ID</th>
         <th>Status</th>
         <th>Timestamp</th>
+        <th>Channel</th>
+        <th>Message ID</th>
+        <th>Note</th>
         <th>User</th>
+        <th>Actions</th>
     </tr>
+    </thead>
+    <tbody>
     <tr th:each="status : ${statuses}">
         <td th:text="${status.id}"></td>
         <td th:text="${status.status}"></td>
-        <td th:text="${#dates.format(status.timestamp, 'yyyy-MM-dd HH:mm')}"></td>
-        <td th:text="${status.customUser.name}"></td>
+        <td th:text="${#temporals.format(status.timestamp, 'yyyy-MM-dd HH:mm')}"></td>
+        <td th:text="${status.channel}"></td>
+        <td th:text="${status.messageId}"></td>
+        <td th:text="${status.note}"></td>
+        <td th:text="${status.customUser.name}"></td> <!-- Adjust if name is a different field -->
         <td>
-            <a th:href="@{'/statuses/edit/' + ${status.id}}">Edit</a> |
-            <a th:href="@{'/statuses/delete/' + ${status.id}}">Delete</a>
+            <a th:href="@{'/notification-statuses/edit/' + ${status.id}}">Edit</a> |
+            <a th:href="@{'/notification-statuses/delete/' + ${status.id}}">Delete</a>
         </td>
     </tr>
+    </tbody>
 </table>
+
+<a th:href="@{/admin/dashboard}">Back To Dashboard</a>
 </body>
 </html>

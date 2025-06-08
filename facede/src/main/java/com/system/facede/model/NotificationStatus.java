@@ -14,6 +14,10 @@ public class NotificationStatus {
     @JoinColumn(name = "custom_user_id")
     private CustomUser customUser;
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     private String channel; // EMAIL, SMS, POSTAL, etc.
 
     private String status; // DELIVERED, FAILED, PENDING, etc.
