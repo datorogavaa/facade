@@ -18,9 +18,9 @@ public class NotificationStatus {
         this.id = id;
     }
 
-    private String channel; // EMAIL, SMS, POSTAL, etc.
+    private String channel; // (EMAIL, SMS, POSTAL)
 
-    private String status; // DELIVERED, FAILED, PENDING, etc.
+    private String status; // ( DELIVERED, FAILED, PENDING ).
 
     private LocalDateTime timestamp;
 
@@ -28,7 +28,6 @@ public class NotificationStatus {
 
     private String note;
 
-    // Getters and setters
 
     public Long getId() {
         return id;

@@ -57,7 +57,7 @@ public class AdminUserViewController {
 
     @GetMapping("/login")
     public String showLoginForm() {
-        return "admin/login";  // this returns your Thymeleaf template at /templates/admin/login.html
+        return "admin/login";
     }
 
 
@@ -72,16 +72,32 @@ public class AdminUserViewController {
     }
 
 
-//    @GetMapping("/edit/{id}")
-//    public String showEditForm(@PathVariable Long id, Model model) {
-//        adminUserService.getById(id).ifPresent(admin -> model.addAttribute("admin", admin));
-//        return "admin/edit";
-//    }
-//
-//    public String updateAdmin(@ModelAttribute AdminUser adminUser) {
-//        adminUserService.save(adminUser);
-//        return "redirect:/admin/dashboard";
-//    }
+    @GetMapping("/reset_password/{id}")
+    public String showEditForm(@PathVariable Long id, Model model) {
+        adminUserService.getById(id).ifPresent(admin -> model.addAttribute("admin", admin));
+        return "admin/reset_password";
+    }
+
+    @PostMapping("/update")
+    public String updateAdmin(@ModelAttribute("admin") AdminUser admin,
+                              @RequestParam("confirmPassword") String confirmPassword,
+                              Model model) {
+        if (!admin.getPassword().equals(confirmPassword)) {
+            model.addAttribute("errorMessage", "Passwords do not match");
+            return "admin/reset_password";
+        }
+
+        try {
+            adminUserService.update(admin);
+            return "redirect:/admin/dashboard";
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", e.getMessage());
+            return "admin/reset_password";
+        }
+    }
+
+
+
 
     @GetMapping("/delete/{id}")
     public String deleteAdmin(@PathVariable Long id) {

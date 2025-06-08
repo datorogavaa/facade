@@ -1,0 +1,1209 @@
+body.page {
+	align-items: center;
+	background-color: #f7f9fc;
+	color: #333;
+	display: flex;
+	flex-direction: column;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	margin: 0;
+	min-height: 100vh;
+	padding: 2rem
+}
+
+body.page-create-admin,
+body.page-login {
+	justify-content: flex-start;
+	padding-top: 4rem
+}
+
+.page-title {
+	color: #222;
+	font-size: 2rem;
+	font-weight: 600;
+	margin-bottom: 1.5rem
+}
+
+.alert {
+	border-radius: 5px;
+	font-weight: 600;
+	margin-bottom: 1.5rem;
+	max-width: 400px;
+	padding: 0.8rem 1rem
+}
+
+.alert-error {
+	background-color: #ffe5e5;
+	border: 1px solid #d32f2f;
+	color: #d32f2f
+}
+
+.form {
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+	max-width: 400px;
+	padding: 2rem 2.5rem;
+	width: 100%
+}
+
+.form-label {
+	color: #444;
+	display: flex;
+	flex-direction: column;
+	font-size: 1rem;
+	font-weight: 500
+}
+
+.form-input {
+	border-radius: 5px;
+	border: 1.8px solid #ccc;
+	font-size: 1rem;
+	margin-top: 0.5rem;
+	padding: 0.5rem 0.75rem;
+	transition: border-color 0.25s ease
+}
+
+.form-input:focus {
+	border-color: #2e86de;
+	box-shadow: 0 0 5px rgba(46, 134, 222, 0.4);
+	outline: none
+}
+
+.btn {
+	border-radius: 6px;
+	border: none;
+	cursor: pointer;
+	font-size: 1.1rem;
+	font-weight: 600;
+	padding: 0.75rem 1.5rem;
+	transition: background-color 0.3s ease
+}
+
+.btn-primary,
+.dashboard-nav .nav-link:hover {
+	background-color: #2e86de;
+	color: white
+}
+
+.btn-primary:hover {
+	background-color: #1b4f72
+}
+
+.form-footer-text {
+	color: #555;
+	font-size: 0.9rem;
+	margin-top: 1rem;
+	text-align: center
+}
+
+.link {
+	color: #2e86de;
+	font-weight: 600;
+	text-decoration: none
+}
+
+.link:hover {
+	color: #1b4f72;
+	text-decoration: underline
+}
+
+.alert-success {
+	background-color: #d4edda;
+	border-radius: 5px;
+	border: 1px solid #c3e6cb;
+	color: #155724;
+	font-weight: 600;
+	margin-bottom: 1.5rem;
+	max-width: 400px;
+	padding: 0.8rem 1rem
+}
+
+body.page-dashboard {
+	align-items: center;
+	background-color: #fafafa;
+	color: #222;
+	display: flex;
+	flex-direction: column;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	min-height: 100vh;
+	padding: 3rem 2rem
+}
+
+.page-dashboard .page-title {
+	color: #333;
+	font-size: 2.5rem;
+	margin-bottom: 2rem
+}
+
+.dashboard-nav {
+	background-color: white;
+	border-radius: 8px;
+	border: 1px solid #ddd;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	max-width: 300px;
+	padding: 1.5rem;
+	width: 100%
+}
+
+.dashboard-nav .nav-link {
+	border-radius: 6px;
+	color: #2e86de;
+	display: block;
+	font-size: 1.1rem;
+	font-weight: 600;
+	padding: 0.6rem 1rem;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	transition: background-color 0.3s ease, color 0.3s ease
+}
+
+.dashboard-nav .nav-link:not(:last-child)::after {
+	background-color: #ccc;
+	border-radius: 1px;
+	content: '';
+	display: block;
+	height: 2px;
+	margin: 0.75rem auto 0;
+	width: 40px
+}
+
+.dashboard-nav .logout-link {
+	border-top: 1px solid #ccc;
+	color: #c0392b;
+	font-weight: 700;
+	margin-top: 1.5rem;
+	padding-top: 1rem
+}
+
+.dashboard-nav .logout-link:hover {
+	background-color: #c0392b;
+	color: white
+}
+
+body.page-reset-password {
+	align-items: center;
+	background-color: #fefefe;
+	color: #222;
+	display: flex;
+	flex-direction: column;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	min-height: 100vh;
+	padding: 3rem 2rem
+}
+
+.page-reset-password .page-title {
+	color: #333;
+	font-size: 2rem;
+	font-weight: 700;
+	margin-bottom: 1.8rem
+}
+
+.error-message {
+	color: #d32f2f;
+	font-weight: 600;
+	margin-bottom: 1rem;
+	max-width: 400px;
+	text-align: center
+}
+
+.form-reset-password {
+	display: flex;
+	flex-direction: column;
+	gap: 1.2rem;
+	max-width: 400px;
+	width: 100%
+}
+
+.form-label {
+	color: #444;
+	display: flex;
+	flex-direction: column;
+	font-size: 1rem;
+	font-weight: 600
+}
+
+.form-input {
+	border-radius: 5px;
+	border: 1.5px solid #ccc;
+	font-size: 1rem;
+	margin-top: 0.4rem;
+	padding: 0.5rem 0.75rem;
+	transition: border-color 0.3s ease
+}
+
+.form-input:focus {
+	border-color: #2e86de;
+	outline: none
+}
+
+.btn {
+	border-radius: 5px;
+	border: none;
+	cursor: pointer;
+	font-size: 1rem;
+	font-weight: 700;
+	padding: 0.75rem 1.5rem;
+	transition: background-color 0.3s ease
+}
+
+.page-address-create,
+.page-addresses,
+.page-notification-preferences,
+.page-status-create,
+.page-user-create {
+	align-items: center;
+	background-color: #f5f5f5;
+	display: flex;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	justify-content: center;
+	min-height: 100vh;
+	padding: 1rem
+}
+
+.center-wrapper,
+.page-address-create .center-wrapper {
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+	max-width: 400px;
+	padding: 2rem;
+	text-align: center;
+	width: 100%
+}
+
+.form-user-create,
+.page-address-create form.form,
+.page-notification-preferences .form,
+.page-status-create .form-create-status {
+	text-align: left
+}
+
+.form-user-create div,
+.page-address-create .form-group,
+.page-notification-preferences .form-group,
+.page-status-create .form-group {
+	margin-bottom: 1rem
+}
+
+.form-user-create label,
+.page-address-create label,
+.page-notification-preferences label,
+.page-status-create label {
+	color: #333;
+	display: block;
+	font-weight: 600;
+	margin-bottom: 0.3rem
+}
+
+.form-user-create input[type="email"],
+.form-user-create input[type="password"],
+.form-user-create input[type="text"] {
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	padding: 0.5rem;
+	width: 100%
+}
+
+.form-user-create button,
+.page-notification-preferences .btn-save,
+.page-status-create .btn-primary {
+	background-color: #4a90e2;
+	border-radius: 4px;
+	border: none;
+	color: white;
+	cursor: pointer;
+	font-weight: 600;
+	padding: 0.5rem 1.2rem
+}
+
+.form-user-create button:hover,
+.page-address-create .btn-submit:hover,
+.page-addresses .btn-edit:hover,
+.page-notification-preferences .btn-save:hover,
+.page-status-create .btn-primary:hover {
+	background-color: #357ABD
+}
+
+.cancel-link {
+	color: #666;
+	font-weight: 600;
+	margin-left: 1rem;
+	text-decoration: none
+}
+
+.back-link:hover,
+.cancel-link:hover,
+.page-address-create .back-link:hover,
+.page-address-edit .back-link:hover,
+.page-addresses .back-link:hover,
+.page-notification-preferences .back-link:hover,
+.page-notification-preferences-edit .back-link:hover,
+.page-notification-statuses-list .back-link:hover,
+.page-status-create .back-link:hover,
+.page-status-edit .back-link:hover,
+.page-user-edit .back-link:hover {
+	text-decoration: underline
+}
+
+.back-link,
+.page-address-create .back-link,
+.page-notification-preferences .back-link,
+.page-status-create .back-link {
+	color: #4a90e2;
+	display: inline-block;
+	font-weight: 600;
+	margin-top: 1.5rem;
+	text-decoration: none
+}
+
+.page-user-edit,
+.page-user-list {
+	align-items: flex-start;
+	background-color: #f5f5f5;
+	display: flex;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	justify-content: center;
+	min-height: 100vh;
+	padding: 2rem 1rem
+}
+
+.center-wrapper {
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+	max-width: 900px;
+	padding: 2rem;
+	width: 100%
+}
+
+h2 {
+	margin-bottom: 1rem;
+	text-align: center
+}
+
+.btn {
+	border-radius: 4px;
+	cursor: pointer;
+	display: inline-block;
+	font-weight: 600;
+	margin: 0 0.2rem;
+	padding: 0.4rem 1rem;
+	text-decoration: none
+}
+
+.btn-add {
+	background-color: #4CAF50;
+	color: white;
+	margin-bottom: 1rem
+}
+
+.btn-add:hover,
+.page-notification-preferences .btn-save:hover,
+.page-notification-statuses-list .btn-add:hover {
+	background-color: #45a049
+}
+
+.page-addresses .data-table,
+.page-notification-statuses-list .data-table,
+.user-table {
+	border-collapse: collapse;
+	margin-bottom: 1rem;
+	width: 100%
+}
+
+.user-table td,
+.user-table th {
+	border: 1px solid #ddd;
+	padding: 10px 15px;
+	text-align: left;
+	vertical-align: middle
+}
+
+.user-table th {
+	background-color: #f0f0f0;
+	font-weight: 700
+}
+
+.user-table tr:nth-child(even) {
+	background-color: #fafafa
+}
+
+.user-table tr:hover {
+	background-color: #f1f7ff
+}
+
+.btn-edit {
+	background-color: #2196F3;
+	color: white
+}
+
+.btn-update:hover,
+.btn-edit:hover,
+.btn-save:hover,
+.page-notification-statuses-list .btn-edit:hover,
+button.btn-update:hover {
+	background-color: #1976D2
+}
+
+.btn-delete {
+	background-color: #f44336;
+	color: white
+}
+
+.btn-delete:hover,
+.page-notification-statuses-list .btn-delete:hover {
+	background-color: #d32f2f
+}
+
+.back-link {
+	color: #4a90e2;
+	display: inline-block;
+	font-weight: 600;
+	margin-top: 1rem;
+	text-align: center;
+	text-decoration: none
+}
+
+.center-wrapper {
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+	max-width: 500px;
+	padding: 2rem;
+	width: 100%
+}
+
+h2 {
+	margin-bottom: 1.5rem;
+	text-align: center
+}
+
+.form-group {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1.25rem
+}
+
+.form-group label {
+	font-weight: 600;
+	margin-bottom: 0.3rem
+}
+
+.form-group select,
+select,
+.form-group input {
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	font-size: 1rem;
+	padding: 0.5rem
+}
+
+.btn-update,
+.btn-save,
+button.btn-update {
+	background-color: #2196F3;
+	border-radius: 4px;
+	border: none;
+	color: white;
+	cursor: pointer;
+	display: block;
+	font-size: 1rem;
+	font-weight: 700;
+	padding: 0.6rem 0;
+	transition: background-color 0.2s ease-in-out;
+	width: 100%
+}
+
+.back-link {
+	color: #4a90e2;
+	display: inline-block;
+	font-weight: 600;
+	margin-top: 1.5rem;
+	text-align: center;
+	text-decoration: none
+}
+
+.page-address-create h2,
+.page-addresses h2,
+.page-notification-preferences h2,
+.page-status-create .page-title {
+	color: #222;
+	font-size: 24px;
+	font-weight: 700;
+	margin-bottom: 1.5rem
+}
+
+.page-address-create select,
+.page-address-create input[type="text"],
+.page-status-create .form-input {
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	font-size: 14px;
+	padding: 0.5rem;
+	width: 100%
+}
+
+.page-address-create .btn-submit {
+	background-color: #4a90e2;
+	border-radius: 4px;
+	border: none;
+	color: white;
+	cursor: pointer;
+	font-weight: 600;
+	margin-top: 0.5rem;
+	padding: 0.5rem 1.2rem
+}
+
+.page-addresses .center-wrapper {
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+	max-width: 1000px;
+	padding: 2rem;
+	text-align: center;
+	width: 100%
+}
+
+.page-addresses .btn-add,
+.page-notification-statuses-list .btn-add {
+	background-color: #4CAF50;
+	border-radius: 4px;
+	color: white;
+	display: inline-block;
+	font-weight: 600;
+	margin-bottom: 1rem;
+	padding: 0.5rem 1rem;
+	text-decoration: none
+}
+
+.page-addresses .btn-add:hover {
+	background-color: #3e8e41
+}
+
+.page-addresses .data-table td,
+.page-addresses .data-table th {
+	border: 1px solid #ccc;
+	font-size: 14px;
+	padding: 0.6rem;
+	text-align: left
+}
+
+.page-addresses .btn {
+	border-radius: 4px;
+	font-size: 13px;
+	font-weight: 600;
+	margin: 0 0.2rem;
+	padding: 0.3rem 0.7rem;
+	text-decoration: none
+}
+
+.page-addresses .btn-edit {
+	background-color: #4a90e2;
+	color: white
+}
+
+.page-addresses .btn-delete {
+	background-color: #e74c3c;
+	color: white
+}
+
+.page-addresses .btn-delete:hover {
+	background-color: #c0392b
+}
+
+.page-addresses .back-link,
+.page-notification-preferences .back-link,
+.page-notification-statuses-list .back-link {
+	color: #4a90e2;
+	display: inline-block;
+	font-weight: 600;
+	margin-top: 1rem;
+	text-decoration: none
+}
+
+.page-notification-preferences .center-wrapper {
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+	max-width: 500px;
+	padding: 2rem;
+	text-align: center;
+	width: 100%
+}
+
+.page-notification-preferences input[type="checkbox"],
+.page-notification-preferences select {
+	box-sizing: border-box;
+	padding: 0.4rem;
+	width: 100%
+}
+
+.page-notification-preferences .checkbox-group {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem
+}
+
+.page-notification-preferences .checkbox-group label {
+	align-items: center;
+	display: flex;
+	font-weight: 500;
+	gap: 0.5rem
+}
+
+*::after,
+*::before,
+* {
+	box-sizing: border-box;
+	font-family: inherit
+}
+
+body {
+	background-color: #f5f5f5;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	margin: 0;
+	padding: 0
+}
+
+.page-notification-preferences,
+.page-notification-preferences-edit,
+.page-notification-preferences-list,
+.page-address-edit {
+	align-items: flex-start;
+	background-color: #f5f5f5;
+	display: flex;
+	justify-content: center;
+	min-height: 100vh;
+	padding: 2rem 1rem
+}
+
+.center-wrapper {
+	background: white;
+	border-radius: 8px;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+	font-family: Arial, sans-serif;
+	max-width: 900px;
+	padding: 2rem;
+	width: 100%
+}
+
+.form-group label,
+.page-notification-preferences .form-group label {
+	font-weight: 600;
+	margin-bottom: 0.5rem
+}
+
+.btn {
+	border-radius: 4px;
+	border: none;
+	color: white;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 0.9rem;
+	margin-right: 6px;
+	padding: 6px 12px;
+	text-decoration: none;
+	transition: background-color 0.2s ease-in-out
+}
+
+.btn-add {
+	background-color: #4CAF50;
+	margin-bottom: 15px
+}
+
+.btn-edit {
+	background-color: #2196F3;
+	padding: 4px 8px
+}
+
+.btn-delete {
+	background-color: #f44336;
+	padding: 4px 8px
+}
+
+.data-table {
+	border-collapse: collapse;
+	margin-top: 1rem;
+	width: 100%
+}
+
+.data-table td,
+.data-table th {
+	border: 1px solid #ddd;
+	padding: 10px;
+	text-align: left;
+	vertical-align: middle
+}
+
+.data-table th {
+	background-color: #f2f2f2
+}
+
+.checkbox-group label {
+	align-items: center;
+	display: flex;
+	font-weight: normal;
+	margin-bottom: 0.5rem
+}
+
+.checkbox-group input[type="checkbox"] {
+	margin-right: 8px;
+	transform: scale(1.1)
+}
+
+.back-link {
+	color: #4a90e2;
+	display: block;
+	font-weight: 600;
+	margin-top: 1.5rem;
+	text-align: center;
+	text-decoration: none
+}
+
+.page-status-create .center-wrapper {
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+	max-width: 550px;
+	padding: 2rem;
+	text-align: center;
+	width: 100%
+}
+
+.page-status-create textarea.form-input {
+	resize: vertical
+}
+
+.page-status-edit {
+	align-items: center;
+	background-color: #f0f2f5;
+	display: flex;
+	font-family: Arial, sans-serif;
+	justify-content: center;
+	min-height: 100vh;
+	padding: 20px
+}
+
+.page-status-edit .center-wrapper {
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	max-width: 90vw;
+	padding: 30px 40px;
+	width: 420px
+}
+
+.page-notification-preferences-edit h2,
+.page-status-edit .page-title {
+	color: #333;
+	font-size: 24px;
+	margin-bottom: 25px;
+	text-align: center
+}
+
+.page-address-edit form.form,
+.page-notification-preferences .form-group,
+.page-notification-preferences-edit form.form,
+.page-status-edit .form-edit-status,
+.page-user-edit form.form {
+	display: flex;
+	flex-direction: column
+}
+
+.page-notification-preferences-edit .form-group,
+.page-status-edit .form-group {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 18px
+}
+
+.page-status-edit label {
+	color: #444;
+	font-weight: 600;
+	margin-bottom: 6px
+}
+
+.page-status-edit .form-input {
+	border-radius: 5px;
+	border: 1.5px solid #ccc;
+	font-size: 14px;
+	outline: none;
+	padding: 10px 12px;
+	transition: border-color 0.3s ease
+}
+
+.page-status-edit .form-input:focus {
+	border-color: #007bff;
+	box-shadow: 0 0 5px rgba(0, 123, 255, 0.4)
+}
+
+.page-status-edit select.form-input {
+	background-color: #fff;
+	cursor: pointer
+}
+
+.page-status-edit .btn-primary {
+	background-color: #007bff;
+	border-radius: 5px;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: 600;
+	margin-top: 10px;
+	padding: 11px 0;
+	transition: background-color 0.3s ease
+}
+
+.page-status-edit .btn-primary:hover {
+	background-color: #0056b3
+}
+
+.page-status-edit .back-link {
+	color: #007bff;
+	display: inline-block;
+	font-size: 14px;
+	margin-top: 20px;
+	text-align: center;
+	text-decoration: none
+}
+
+.page-notification-preferences-edit {
+	align-items: center;
+	background-color: #fafafa;
+	display: flex;
+	font-family: Arial, sans-serif;
+	justify-content: center;
+	min-height: 100vh;
+	padding: 20px
+}
+
+.page-notification-preferences-edit .center-wrapper {
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	max-width: 90vw;
+	padding: 30px 40px;
+	width: 400px
+}
+
+.page-notification-preferences-edit .checkbox-group label {
+	align-items: center;
+	color: #444;
+	cursor: pointer;
+	display: flex;
+	font-weight: 600;
+	gap: 8px;
+	margin-bottom: 12px
+}
+
+.page-notification-preferences-edit .checkbox-group input[type="checkbox"] {
+	cursor: pointer;
+	height: 18px;
+	width: 18px
+}
+
+.page-notification-preferences-edit select {
+	border-radius: 5px;
+	border: 1.5px solid #ccc;
+	cursor: pointer;
+	font-size: 14px;
+	outline: none;
+	padding: 10px 12px;
+	transition: border-color 0.3s ease
+}
+
+.page-notification-preferences-edit select:focus {
+	border-color: #28a745;
+	box-shadow: 0 0 5px rgba(40, 167, 69, 0.4)
+}
+
+.page-notification-preferences-edit .btn-save {
+	background-color: #28a745;
+	border-radius: 5px;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: 600;
+	margin-top: 10px;
+	padding: 11px 0;
+	transition: background-color 0.3s ease
+}
+
+.page-notification-preferences-edit .btn-save:hover {
+	background-color: #1e7e34
+}
+
+.page-notification-preferences-edit .back-link {
+	color: #28a745;
+	display: inline-block;
+	font-size: 14px;
+	margin-top: 20px;
+	text-align: center;
+	text-decoration: none
+}
+
+.page-user-edit {
+	align-items: center;
+	background-color: #fefefe;
+	display: flex;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	justify-content: center;
+	min-height: 100vh;
+	padding: 25px
+}
+
+.page-user-edit .center-wrapper {
+	background-color: #fff;
+	border-radius: 7px;
+	box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+	max-width: 90vw;
+	padding: 35px 45px;
+	width: 400px
+}
+
+.page-address-edit h2,
+.page-user-edit h2 {
+	color: #222;
+	font-size: 26px;
+	font-weight: 700;
+	margin-bottom: 28px;
+	text-align: center
+}
+
+.page-address-edit .form-group,
+.page-user-edit .form-group {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px
+}
+
+.page-address-edit label,
+.page-user-edit label {
+	color: #333;
+	font-weight: 600;
+	margin-bottom: 8px
+}
+
+.page-user-edit input[type="email"],
+.page-user-edit input[type="text"] {
+	border-radius: 5px;
+	border: 1.7px solid #bbb;
+	font-size: 15px;
+	outline: none;
+	padding: 10px 12px;
+	transition: border-color 0.3s ease
+}
+
+.page-user-edit input[type="email"]:focus,
+.page-user-edit input[type="text"]:focus {
+	border-color: #0056b3;
+	box-shadow: 0 0 6px rgba(0, 86, 179, 0.4)
+}
+
+.page-user-edit .btn-update {
+	background-color: #0056b3;
+	border-radius: 6px;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: 700;
+	margin-top: 15px;
+	padding: 12px 0;
+	transition: background-color 0.3s ease
+}
+
+.page-user-edit .btn-update:hover {
+	background-color: #003d80
+}
+
+.page-user-edit .back-link {
+	color: #0056b3;
+	display: block;
+	font-size: 14px;
+	font-weight: 600;
+	margin-top: 25px;
+	text-align: center;
+	text-decoration: none
+}
+
+.page-address-edit {
+	align-items: center;
+	background-color: #f9f9f9;
+	display: flex;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	justify-content: center;
+	min-height: 100vh;
+	padding: 25px
+}
+
+.page-address-edit .center-wrapper {
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+	max-width: 90vw;
+	padding: 35px 45px;
+	width: 400px
+}
+
+.page-address-edit select,
+.page-address-edit input[type="text"] {
+	border-radius: 5px;
+	border: 1.5px solid #bbb;
+	font-size: 15px;
+	outline: none;
+	padding: 10px 12px;
+	transition: border-color 0.3s ease
+}
+
+.page-address-edit select:focus,
+.page-address-edit input[type="text"]:focus {
+	border-color: #0073e6;
+	box-shadow: 0 0 6px rgba(0, 115, 230, 0.3)
+}
+
+.page-address-edit .btn-submit {
+	background-color: #0073e6;
+	border-radius: 6px;
+	border: none;
+	color: white;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: 700;
+	margin-top: 15px;
+	padding: 12px 0;
+	transition: background-color 0.3s ease
+}
+
+.page-address-edit .btn-submit:hover {
+	background-color: #005bb5
+}
+
+.page-address-edit .back-link {
+	color: #0073e6;
+	display: block;
+	font-size: 14px;
+	font-weight: 600;
+	margin-top: 25px;
+	text-align: center;
+	text-decoration: none
+}
+
+.page-notification-preferences,
+.page-notification-statuses-list {
+	align-items: center;
+	background-color: #eef2f5;
+	display: flex;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	justify-content: center;
+	min-height: 100vh;
+	padding: 1rem
+}
+
+.page-notification-statuses-list .center-wrapper {
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+	max-width: 1100px;
+	overflow-x: auto;
+	padding: 2rem;
+	width: 100%
+}
+
+.page-notification-statuses-list h2 {
+	color: #222;
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 1.5rem;
+	text-align: center
+}
+
+.page-notification-statuses-list .data-table td,
+.page-notification-statuses-list .data-table th {
+	border: 1px solid #ddd;
+	padding: 0.6rem;
+	text-align: left
+}
+
+.page-notification-statuses-list .data-table th {
+	background-color: #f2f2f2;
+	font-weight: 600
+}
+
+.page-notification-statuses-list .btn {
+	border-radius: 4px;
+	border: none;
+	color: white;
+	cursor: pointer;
+	font-size: 14px;
+	padding: 0.3rem 0.8rem;
+	text-decoration: none
+}
+
+.page-notification-statuses-list .btn-edit {
+	background-color: #2196F3
+}
+
+.page-notification-statuses-list .btn-delete {
+	background-color: #f44336
+}
+
+.page-notification-preferences .center-wrapper {
+	background: #fff;
+	border-radius: 8px;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+	max-width: 600px;
+	padding: 2rem;
+	width: 100%
+}
+
+.page-notification-preferences h2 {
+	color: #333;
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 1.5rem;
+	text-align: center
+}
+
+.page-notification-preferences .form {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem
+}
+
+.page-notification-preferences input[type="datetime-local"],
+.page-notification-preferences input[type="text"],
+.page-notification-preferences textarea,
+.page-notification-preferences select {
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	padding: 0.5rem
+}
+
+.page-notification-preferences .checkbox-group label {
+	align-items: center;
+	display: flex;
+	font-weight: normal;
+	gap: 0.5rem
+}
+
+.page-notification-preferences .btn-save {
+	align-self: flex-start;
+	background-color: #4CAF50;
+	border-radius: 4px;
+	border: none;
+	color: white;
+	cursor: pointer;
+	font-weight: bold;
+	padding: 0.6rem 1.2rem
+}

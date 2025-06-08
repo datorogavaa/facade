@@ -28,23 +28,6 @@ public class CustomUserService {
         return customUserRepository.save(user);
     }
 
-//    @Transactional
-//    public CustomUser update(Long id, CustomUser updatedUser) {
-//        CustomUser existingUser = customUserRepository.findById(id)
-//                .orElseThrow(() -> new RuntimeException("User not found with id " + id));
-//
-//        System.out.println("Updating user ID: " + id);
-//        System.out.println("Old name: " + existingUser.getName() + ", New name: " + updatedUser.getName());
-//
-//        existingUser.setName(updatedUser.getName());
-//        existingUser.setEmail(updatedUser.getEmail());
-//        existingUser.setPhoneNumber(updatedUser.getPhoneNumber());
-//
-//        return existingUser;
-//    }
-
-
-
     public void delete(Long id) {
         customUserRepository.deleteById(id);
     }

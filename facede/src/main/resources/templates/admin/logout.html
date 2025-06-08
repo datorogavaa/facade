@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8"><title>Create Admin</title></head>
+<head>
+  <meta charset="UTF-8"><title>Create Admin</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
 <body>
 <h2>Create Admin</h2>
 <form th:action="@{/admin}" th:object="${admin}" method="post">

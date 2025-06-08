@@ -1,33 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Admin Login</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
-<body>
-<h2>Admin Login</h2>
+<body class="page page-login">
 
-<!-- Shows error if login fails -->
-<div th:if="${param.error}" style="color: red; font-weight: bold; margin-bottom: 10px;">
+<h2 class="page-title">Admin Login</h2>
+
+<div th:if="${param.error}" class="alert alert-error">
   Invalid username or password
 </div>
 
-<!-- Optional: Logout message -->
-<div th:if="${param.logout}" style="color: green; margin-bottom: 10px;">
+<div th:if="${param.logout}" class="alert alert-success">
   You have been logged out successfully.
 </div>
 
-<!-- Login form -->
-<form th:action="@{/admin/login}" method="post" onsubmit="return validateLoginForm()">
-  <label>Username: <input type="text" name="username" id="username" /></label><br/>
-  <label>Password: <input type="password" name="password" id="password" /></label><br/>
-  <button type="submit">Login</button>
+<form th:action="@{/admin/login}" method="post" onsubmit="return validateLoginForm()" class="form form-login">
+  <label class="form-label">
+    Username:
+    <input type="text" name="username" id="username" class="form-input" />
+  </label>
+
+  <label class="form-label">
+    Password:
+    <input type="password" name="password" id="password" class="form-input" />
+  </label>
+
+  <button type="submit" class="btn btn-primary">Login</button>
 </form>
+<p class="form-footer-text">
+  Don't have an account? <a th:href="@{/admin/new}" class="link">Create a new admin</a>
+</p>
 
-<!-- Link to create new admin -->
-<p>Don't have an account? <a th:href="@{/admin/new}">Create a new admin</a></p>
-
-<!-- JavaScript validation -->
 <script>
   function validateLoginForm() {
       const username = document.getElementById('username').value.trim();

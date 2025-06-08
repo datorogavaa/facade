@@ -1,12 +1,16 @@
 package com.system.facede.controller.view;
 
+import com.system.facede.model.CustomUser;
 import com.system.facede.model.NotificationPreference;
+import com.system.facede.repository.CustomUserRepository;
 import com.system.facede.service.CustomUserService;
 import com.system.facede.service.NotificationPreferenceService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/notification-preferences")
@@ -43,6 +47,9 @@ public class NotificationPreferenceViewController {
         NotificationPreference preference = preferenceService.getById(id)
                 .orElseThrow(() -> new RuntimeException("Preference not found"));
         model.addAttribute("preference", preference);
+        List<CustomUser> users = customUserService.getAll();  // or your method to fetch users
+        model.addAttribute("users", users);
+
         return "preferences/edit";
     }
 
@@ -51,7 +58,6 @@ public class NotificationPreferenceViewController {
         NotificationPreference existingPreference = preferenceService.getById(id)
                 .orElseThrow(() -> new RuntimeException("Preference not found"));
 
-        // Keep the existing CustomUser (do not overwrite)
         preferenceFromForm.setCustomUser(existingPreference.getCustomUser());
 
         preferenceFromForm.setId(id);
@@ -62,9 +68,9 @@ public class NotificationPreferenceViewController {
 
 
 
-    @PostMapping("/delete/{id}")
-    public String deletePreference(@PathVariable Long id) {
-        preferenceService.delete(id);
-        return "redirect:/notification-preferences";
-    }
+//    @PostMapping("/delete/{id}")
+//    public String deletePreference(@PathVariable Long id) {
+//        preferenceService.delete(id);
+//        return "redirect:/notification-preferences";
+//    }
 }

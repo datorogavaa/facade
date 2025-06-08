@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Create Admin</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body class="page page-create-admin">
+
+<h2 class="page-title">Create Admin</h2>
+
+<!-- Alert if error message exists -->
+<div th:if="${errorMessage}" class="alert alert-error">
+    <p th:text="${errorMessage}"></p>
+</div>
+
+<form th:action="@{/admin/create}" th:object="${admin}" method="post" class="form form-create-admin">
+    <label class="form-label">
+        Username:
+        <input type="text" th:field="*{username}" class="form-input" />
+    </label>
+
+    <label class="form-label">
+        Password:
+        <input type="password" th:field="*{password}" class="form-input" />
+    </label>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+<p class="form-footer-text">
+    <a th:href="@{/admin/login}" class="link">Back to login</a>
+</p>
+
+</body>
+</html>

@@ -1,19 +1,19 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8"><title>Admins</title></head>
-<body>
-<h2>Admin List</h2>
-<a th:href="@{/admin/new}">Add Admin</a>
-<table>
-  <tr><th>ID</th><th>Username</th><th>Actions</th></tr>
-  <tr th:each="admin : ${admins}">
-    <td th:text="${admin.id}"></td>
-    <td th:text="${admin.username}"></td>
-    <td>
-      <a th:href="@{'/admins/edit/' + ${admin.id}}">Edit</a> |
-      <a th:href="@{'/admins/delete/' + ${admin.id}}">Delete</a>
-    </td>
-  </tr>
-</table>
-</body>
-</html>
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head><meta charset="UTF-8"><title>Admins</title></head>-->
+<!--<body>-->
+<!--<h2>Admin List</h2>-->
+<!--<a th:href="@{/admin/new}">Add Admin</a>-->
+<!--<table>-->
+<!--  <tr><th>ID</th><th>Username</th><th>Actions</th></tr>-->
+<!--  <tr th:each="admin : ${admins}">-->
+<!--    <td th:text="${admin.id}"></td>-->
+<!--    <td th:text="${admin.username}"></td>-->
+<!--    <td>-->
+<!--      <a th:href="@{'/admins/edit/' + ${admin.id}}">Edit</a> |-->
+<!--      <a th:href="@{'/admins/delete/' + ${admin.id}}">Delete</a>-->
+<!--    </td>-->
+<!--  </tr>-->
+<!--</table>-->
+<!--</body>-->
+<!--</html>-->

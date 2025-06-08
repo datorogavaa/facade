@@ -17,8 +17,6 @@ public class NotificationPreference {
     private boolean smsEnabled = false;
     private boolean postalEnabled = false;
 
-    // Getters and setters
-
 
     public Long getId() {
         return id;

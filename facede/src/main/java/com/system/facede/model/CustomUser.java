@@ -27,7 +27,6 @@ public class CustomUser {
     @OneToOne(mappedBy = "customUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private NotificationPreference notificationPreference;
 
-    // Getters and setters
 
 
     public Long getId() {
