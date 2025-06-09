@@ -2,6 +2,8 @@ package com.system.facede.controller.rest;
 
 import com.system.facede.model.CustomUser;
 import com.system.facede.service.CustomUserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,21 +24,34 @@ public class CustomUserController {
         return customUserService.getAll();
     }
 
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getUser(@PathVariable Long id) {
+        Optional<CustomUser> user = customUserService.getById(id);
+        if (user.isPresent()) {
+            return ResponseEntity.ok(user.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Custom user not found with ID: " + id);
+        }
+    }
+
+
     @PostMapping
     public CustomUser createUser(@RequestBody CustomUser customUser) {
         return customUserService.save(customUser);
     }
 
     @PutMapping("/{id}")
-    public CustomUser updateUser(@PathVariable Long id, @RequestBody CustomUser updatedUser) {
+    public String updateUser(@PathVariable Long id, @RequestBody CustomUser updatedUser) {
         Optional<CustomUser> optionalUser = customUserService.getById(id);
         if (optionalUser.isPresent()) {
             CustomUser existingUser = optionalUser.get();
             existingUser.setName(updatedUser.getName());
             existingUser.setEmail(updatedUser.getEmail());
             existingUser.setPhoneNumber(updatedUser.getPhoneNumber());
-            existingUser.setNotificationPreference(updatedUser.getNotificationPreference());
-            return customUserService.save(existingUser);
+            customUserService.save(existingUser);
+            return "User Updated Succesfully";
         } else {
             throw new RuntimeException("User not found with ID: " + id);
         }
@@ -44,7 +59,15 @@ public class CustomUserController {
 
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Long id) {
-        customUserService.delete(id);
+    public ResponseEntity<?> deleteCustomUser(@PathVariable Long id) {
+        Optional<CustomUser> optionalUser = customUserService.getById(id);
+        if (optionalUser.isPresent()) {
+            customUserService.delete(id);
+            return ResponseEntity.ok("Deleted user successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Custom user not found with ID: " + id);
+        }
     }
+
 }

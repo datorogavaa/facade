@@ -7,11 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class NotificationOptInViewController {
+public class NotificationOptInReportingViewController {
 
     private final NotificationOptInReportingService notificationOptInReportingService;
 
-    public NotificationOptInViewController(NotificationOptInReportingService notificationOptInReportingService) {
+    public NotificationOptInReportingViewController(NotificationOptInReportingService notificationOptInReportingService) {
         this.notificationOptInReportingService = notificationOptInReportingService;
     }
 
@@ -19,6 +19,6 @@ public class NotificationOptInViewController {
     public String showNotificationOptInReport(Model model) {
         NotificationOptInReportDTO report = notificationOptInReportingService.getNotificationOptInReport();
         model.addAttribute("report", report);
-        return "reports/notification-opt-ins";  // This is your Thymeleaf template name
+        return "reports/notification-opt-ins";
     }
 }

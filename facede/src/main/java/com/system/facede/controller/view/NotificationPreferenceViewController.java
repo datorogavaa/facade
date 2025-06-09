@@ -64,11 +64,5 @@ public class NotificationPreferenceViewController {
         return "redirect:/notification-preferences";
     }
 
-//    @PostMapping("/delete/{id}")
-//    public String deletePreference(@PathVariable Long id) {
-//        preferenceService.delete(id);
-//        return "redirect:/notification-preferences";
-//    }
-
 
 }

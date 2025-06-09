@@ -19,10 +19,8 @@ public class NotificationStatusReportingViewController {
     public String getNotificationStatusReport(Model model) {
         NotificationStatusReportDTO report = notificationStatusReportingService.getNotificationStatusReport();
 
-        // Add the report data to the model to pass it to Thymeleaf
         model.addAttribute("report", report);
 
-        // Return the view name to be rendered (Thymeleaf template)
-        return "/reports/notification-status-report"; // Name of the HTML template file (notification-status-report.html)
+        return "/reports/notification-status-report";
     }
 }

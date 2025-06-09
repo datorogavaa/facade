@@ -11,7 +11,6 @@ public class NotificationStatusReportDTO {
         this.pendingCount = pendingCount;
     }
 
-    // Getters and Setters
     public long getDeliveredCount() {
         return deliveredCount;
     }

@@ -2,6 +2,8 @@ package com.system.facede.controller.rest;
 
 import com.system.facede.model.Address;
 import com.system.facede.service.AddressService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +23,20 @@ public class AddressController {
     public List<Address> getAllAddresses() {
         return addressService.getAll();
     }
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getAddress(@PathVariable Long id) {
+        Optional<Address> address = addressService.getById(id);
+        if (address.isPresent()) {
+            return ResponseEntity.ok(address.get());
+        } else {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body("Address with that id does not exist");
+        }
+    }
+
 
     @PostMapping
     public Address createAddress(@RequestBody Address address) {
@@ -43,7 +59,15 @@ public class AddressController {
 
 
     @DeleteMapping("/{id}")
-    public void deleteAddress(@PathVariable Long id) {
-        addressService.delete(id);
+    public ResponseEntity<?> deleteAddress(@PathVariable Long id) {
+        Optional<Address> optionalAddress = addressService.getById(id);
+        if (optionalAddress.isPresent()) {
+            addressService.delete(id);
+            return ResponseEntity.ok("Deleted address successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Address not found with ID: " + id);
+        }
     }
+
 }

@@ -1,7 +1,10 @@
 package com.system.facede.controller.rest;
 
+import com.system.facede.model.CustomUser;
 import com.system.facede.model.NotificationPreference;
+import com.system.facede.repository.CustomUserRepository;
 import com.system.facede.service.NotificationPreferenceService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,9 +16,11 @@ import java.util.Optional;
 public class NotificationPreferenceController {
 
     private final NotificationPreferenceService preferenceService;
+    private final CustomUserRepository customUserRepository;
 
-    public NotificationPreferenceController(NotificationPreferenceService preferenceService) {
+    public NotificationPreferenceController(NotificationPreferenceService preferenceService, CustomUserRepository customUserRepository) {
         this.preferenceService = preferenceService;
+        this.customUserRepository = customUserRepository;
     }
 
     @GetMapping
@@ -23,10 +28,28 @@ public class NotificationPreferenceController {
         return preferenceService.getAll();
     }
 
-    @PostMapping
-    public NotificationPreference createPreference(@RequestBody NotificationPreference pref) {
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getPreference(@PathVariable Long id) {
+        Optional<NotificationPreference> pref = preferenceService.getById(id);
+        if(pref.isPresent()) {
+            return  ResponseEntity.ok(pref.get());
+        }else{
+            return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                    .body("Preference with that id does not exist");
+        }
+    }
+
+
+    @PostMapping("/{userId}")
+    public NotificationPreference createPreference(@PathVariable Long userId, @RequestBody NotificationPreference pref) {
+        CustomUser user = customUserRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        pref.setCustomUser(user);
         return preferenceService.save(pref);
     }
+
 
     @PutMapping("/{id}")
     public NotificationPreference updatePreference(@PathVariable Long id, @RequestBody NotificationPreference updated) {
@@ -58,9 +81,4 @@ public class NotificationPreferenceController {
         }
     }
 
-
-    @DeleteMapping("/{id}")
-    public void deletePreference(@PathVariable Long id) {
-        preferenceService.delete(id);
-    }
 }
