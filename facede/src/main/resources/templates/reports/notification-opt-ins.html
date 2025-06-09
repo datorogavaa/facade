@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Notification Opt-In Report</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body class="page page-dashboard">
+
+<h1 class="page-title">Notification Opt-In Report</h1>
+
+<div class="dashboard-nav">
+  <p class="report-item">📧 Email Opt-Ins: <span th:text="${report.emailOptInCount}">0</span></p>
+  <p class="report-item">📱 SMS Opt-Ins: <span th:text="${report.smsOptInCount}">0</span></p>
+  <p class="report-item">✉️ Postal Opt-Ins: <span th:text="${report.postalOptInCount}">0</span></p>
+
+  <a th:href="@{/admin/dashboard}" class="nav-link">← Back to Dashboard</a>
+</div>
+
+</body>
+</html>

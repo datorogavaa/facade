@@ -3,7 +3,6 @@ package com.system.facede.controller.view;
 import com.system.facede.model.NotificationStatus;
 import com.system.facede.service.CustomUserService;
 import com.system.facede.service.NotificationStatusService;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +28,7 @@ public class NotificationStatusViewController {
     @GetMapping("/new")
     public String showCreateForm(Model model) {
         model.addAttribute("status", new NotificationStatus());
-        model.addAttribute("users", customUserService.getAll()); // add users here!
+        model.addAttribute("users", customUserService.getAll());
         return "statuses/create";
     }
 
@@ -44,7 +43,7 @@ public class NotificationStatusViewController {
     public String showEditForm(@PathVariable Long id, Model model) {
         NotificationStatus status = statusService.getById(id).orElseThrow(() -> new RuntimeException("Not found"));
         model.addAttribute("status", status);
-        model.addAttribute("users", customUserService.getAll()); // add users here too
+        model.addAttribute("users", customUserService.getAll());
         return "statuses/edit";
     }
 

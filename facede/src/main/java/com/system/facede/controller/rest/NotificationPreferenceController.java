@@ -2,6 +2,7 @@ package com.system.facede.controller.rest;
 
 import com.system.facede.model.NotificationPreference;
 import com.system.facede.service.NotificationPreferenceService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,6 +40,21 @@ public class NotificationPreferenceController {
             return preferenceService.save(existing);
         } else {
             throw new RuntimeException("Preference not found with ID: " + id);
+        }
+    }
+
+    @PostMapping("/batch")
+    public ResponseEntity<String> updatePreferencesBatch(
+            @RequestParam List<Long> userIds,  // List of customer IDs to update
+            @RequestParam boolean emailEnabled,
+            @RequestParam boolean smsEnabled,
+            @RequestParam boolean postalEnabled
+    ) {
+        try {
+            preferenceService.updateNotificationPreferencesBatch(userIds, emailEnabled, smsEnabled, postalEnabled);
+            return ResponseEntity.ok("Batch update successful.");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("Error: " + e.getMessage());
         }
     }
 

@@ -5,8 +5,9 @@ import com.system.facede.exception.UsernameAlreadyExistsException;
 import com.system.facede.exception.UsernameEmptyException;
 import com.system.facede.model.AdminUser;
 import com.system.facede.service.AdminUserService;
-import org.springframework.context.annotation.Role;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,12 @@ public class AdminUserViewController {
 
     @GetMapping("/new")
     public String showCreateForm(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        if (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)) {
+            return "redirect:/admin/dashboard";
+        }
+
         model.addAttribute("admin", new AdminUser());
         return "admin/create";
     }
@@ -42,7 +49,7 @@ public class AdminUserViewController {
             model.addAttribute("errorMessage", e.getMessage());
             model.addAttribute("admin", adminUser); // Keeps input filled
 
-            return "admin/create"; // Stay on form if error
+            return "admin/create";
         }  catch (PasswordEmptyException e) {
             model.addAttribute("errorMessage", e.getMessage());
             model.addAttribute("admin", adminUser);
@@ -57,6 +64,11 @@ public class AdminUserViewController {
 
     @GetMapping("/login")
     public String showLoginForm() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        if (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)) {
+            return "redirect:/admin/dashboard";
+        }
         return "admin/login";
     }
 

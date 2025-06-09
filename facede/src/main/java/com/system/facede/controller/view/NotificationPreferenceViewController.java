@@ -2,10 +2,8 @@ package com.system.facede.controller.view;
 
 import com.system.facede.model.CustomUser;
 import com.system.facede.model.NotificationPreference;
-import com.system.facede.repository.CustomUserRepository;
 import com.system.facede.service.CustomUserService;
 import com.system.facede.service.NotificationPreferenceService;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -66,11 +64,11 @@ public class NotificationPreferenceViewController {
         return "redirect:/notification-preferences";
     }
 
-
-
 //    @PostMapping("/delete/{id}")
 //    public String deletePreference(@PathVariable Long id) {
 //        preferenceService.delete(id);
 //        return "redirect:/notification-preferences";
 //    }
+
+
 }

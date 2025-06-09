@@ -3,6 +3,7 @@ package com.system.facede.service;
 import com.system.facede.model.NotificationPreference;
 import com.system.facede.repository.NotificationPreferenceRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,5 +34,17 @@ public class NotificationPreferenceService {
 
     public void delete(Long id) {
         repository.deleteById(id);
+    }
+
+    // Batch update method for notification preferences
+    @Transactional
+    public void updateNotificationPreferencesBatch(List<Long> userIds, boolean emailEnabled, boolean smsEnabled, boolean postalEnabled) {
+        // Validate the userIds list
+        if (userIds == null || userIds.isEmpty()) {
+            throw new IllegalArgumentException("User IDs list cannot be empty.");
+        }
+
+        // Perform the batch update using the custom query in the repository
+        repository.updatePreferencesForMultipleUsers(userIds, emailEnabled, smsEnabled, postalEnabled);
     }
 }

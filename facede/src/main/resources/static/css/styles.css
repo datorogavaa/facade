@@ -1207,3 +1207,11 @@ body {
 	font-weight: bold;
 	padding: 0.6rem 1.2rem
 }
+
+.report-item {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: center;
+}

@@ -24,8 +24,6 @@ public class Address {
     @JoinColumn(name = "custom_user_id")
     private CustomUser customUser;
 
-    // Getters and setters
-
 
     public Long getId() {
         return id;

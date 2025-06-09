@@ -55,10 +55,14 @@ public class AdminUserService {
 
         return adminUserRepository.save(adminUser);
     }
+
+
+
     public AdminUser update(AdminUser adminUser) {
         if (adminUser.getId() == null) {
             throw new IllegalArgumentException("User ID must not be null for update.");
         }
+
         Optional<AdminUser> existingUserOpt = adminUserRepository.findById(adminUser.getId());
         if (existingUserOpt.isEmpty()) {
             throw new IllegalArgumentException("Admin user not found.");

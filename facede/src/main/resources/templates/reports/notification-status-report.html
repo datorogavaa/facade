@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Notification Status Report</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body class="page page-dashboard">
+
+<h1 class="page-title">Notification Status Report</h1>
+
+<div class="dashboard-nav">
+  <p class="report-item">✅ Delivered: <span th:text="${report.deliveredCount}">0</span></p>
+  <p class="report-item">❌ Failed: <span th:text="${report.failedCount}">0</span></p>
+  <p class="report-item">⏳ Pending: <span th:text="${report.pendingCount}">0</span></p>
+
+  <a th:href="@{/admin/dashboard}" class="nav-link">← Back to Dashboard</a>
+</div>
+
+</body>
+</html>
