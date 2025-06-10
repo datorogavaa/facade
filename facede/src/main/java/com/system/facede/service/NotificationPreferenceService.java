@@ -50,8 +50,4 @@ public class NotificationPreferenceService {
     }
 
 
-    public List<NotificationPreference> searchAndSort(String username, String preferenceType, Sort sort) {
-        return repository.findWithFilters(username, preferenceType, sort);
-    }
-
 }

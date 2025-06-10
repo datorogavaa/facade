@@ -29,15 +29,4 @@ public interface NotificationPreferenceRepository extends JpaRepository<Notifica
     void updatePreferencesForMultipleUsers(List<Long> userIds, boolean emailEnabled, boolean smsEnabled, boolean postalEnabled);
 
 
-    @Query("SELECT p FROM NotificationPreference p WHERE " +
-            "(:username IS NULL OR LOWER(p.customUser.name) LIKE LOWER(CONCAT('%', :username, '%'))) AND " +
-            "(:type IS NULL OR " +
-            " (:type = 'email' AND p.emailEnabled = true) OR " +
-            " (:type = 'sms' AND p.smsEnabled = true) OR " +
-            " (:type = 'postal' AND p.postalEnabled = true))")
-    List<NotificationPreference> findWithFilters(@Param("username") String username,
-                                                 @Param("type") String type,
-                                                 Sort sort);
-
-
 }

@@ -47,37 +47,6 @@ public class NotificationPreferenceViewController {
         return "redirect:/notification-preferences";
     }
 
-
-    @GetMapping("/notification-preferences")
-    public String listPreferences(@RequestParam(required = false) String username,
-                                  @RequestParam(required = false) String preferenceType,
-                                  @RequestParam(defaultValue = "customUser.name") String sortField,
-                                  @RequestParam(defaultValue = "asc") String sortDir,
-                                  Model model) {
-
-        Sort sort = sortDir.equalsIgnoreCase("asc")
-                ? Sort.by(sortField).ascending()
-                : Sort.by(sortField).descending();
-
-        // ✅ Call your service method here
-        List<NotificationPreference> preferences = preferenceService
-                .searchAndSort(username, preferenceType, sort);
-
-        model.addAttribute("preferences", preferences);
-        model.addAttribute("sortField", sortField);
-        model.addAttribute("sortDir", sortDir);
-        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
-
-        // Preserve search field values
-        model.addAttribute("param", Map.of(
-                "username", username != null ? username : "",
-                "preferenceType", preferenceType != null ? preferenceType : ""
-        ));
-
-        return "notification-preferences/list";
-    }
-
-
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
         NotificationPreference preference = preferenceService.getById(id)
