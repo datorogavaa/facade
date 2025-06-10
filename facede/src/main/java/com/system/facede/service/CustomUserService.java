@@ -21,6 +21,15 @@ public class CustomUserService {
         return customUserRepository.findAll();
     }
 
+
+    public List<CustomUser> getFilteredUsers(String name, String email, String phone) {
+        return customUserRepository.findByNameContainingIgnoreCaseAndEmailContainingIgnoreCaseAndPhoneNumberContaining(
+                name != null ? name : "",
+                email != null ? email : "",
+                phone != null ? phone : "");
+    }
+
+
     public Optional<CustomUser> getById(Long id) {
         return customUserRepository.findById(id);
     }

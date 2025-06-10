@@ -22,10 +22,15 @@ public class CustomUserViewController {
     }
 
     @GetMapping
-    public String listUsers(Model model) {
-        model.addAttribute("users", customUserService.getAll());
+    public String listUsers(@RequestParam(required = false) String name,
+                            @RequestParam(required = false) String email,
+                            @RequestParam(required = false) String phone,
+                            Model model) {
+        model.addAttribute("users", customUserService.getFilteredUsers(name, email, phone));
         return "users/list";
     }
+
+
 
     @GetMapping("/new")
     public String showCreateForm(Model model) {

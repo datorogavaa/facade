@@ -25,6 +25,12 @@
         <h2>Customers</h2>
         <button class="btn-primary" th:onclick="'location.href=\'/users/new\''">Add Customer</button>
       </div>
+      <form th:action="@{/users}" method="get" class="search-form" style="margin-bottom: 1em;">
+        <input type="text" name="name" placeholder="Name" th:value="${param.name}" />
+        <input type="text" name="email" placeholder="Email" th:value="${param.email}" />
+        <input type="text" name="phone" placeholder="Phone" th:value="${param.phone}" />
+        <button type="submit" class="btn-primary">Search</button>
+      </form>
       <div class="card">
         <table>
           <thead>

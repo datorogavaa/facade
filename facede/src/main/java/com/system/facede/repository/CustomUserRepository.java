@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface CustomUserRepository extends JpaRepository<CustomUser, Long> {
@@ -19,4 +20,9 @@ public interface CustomUserRepository extends JpaRepository<CustomUser, Long> {
             @Param("name") String name,
             @Param("email") String email,
             @Param("phoneNumber") String phoneNumber);
+
+    List<CustomUser> findByNameContainingIgnoreCaseAndEmailContainingIgnoreCaseAndPhoneNumberContaining(
+            String name, String email, String phoneNumber);
+
+
 }

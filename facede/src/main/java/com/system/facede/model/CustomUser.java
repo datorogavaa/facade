@@ -20,6 +20,8 @@ public class CustomUser {
     @Column(unique = true)
     private String email;
 
+
+    @Column(name = "phone_number")
     private String phoneNumber;
 
 
