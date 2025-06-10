@@ -2,6 +2,7 @@ package com.system.facede.service;
 
 import com.system.facede.model.NotificationPreference;
 import com.system.facede.repository.NotificationPreferenceRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,4 +48,10 @@ public class NotificationPreferenceService {
         // Perform the batch update using the custom query in the repository
         repository.updatePreferencesForMultipleUsers(userIds, emailEnabled, smsEnabled, postalEnabled);
     }
+
+
+    public List<NotificationPreference> searchAndSort(String username, String preferenceType, Sort sort) {
+        return repository.findWithFilters(username, preferenceType, sort);
+    }
+
 }

@@ -3,6 +3,9 @@ package com.system.facede.service;
 import com.system.facede.dto.CustomUserBatchUpdateRequest;
 import com.system.facede.model.CustomUser;
 import com.system.facede.repository.CustomUserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,12 +25,18 @@ public class CustomUserService {
     }
 
 
-    public List<CustomUser> getFilteredUsers(String name, String email, String phone) {
+    public List<CustomUser> getFilteredUsers(String name, String email, String phone, Sort sort) {
         return customUserRepository.findByNameContainingIgnoreCaseAndEmailContainingIgnoreCaseAndPhoneNumberContaining(
                 name != null ? name : "",
                 email != null ? email : "",
-                phone != null ? phone : "");
+                phone != null ? phone : "",
+                sort);
     }
+
+
+
+
+
 
 
     public Optional<CustomUser> getById(Long id) {

@@ -1,6 +1,9 @@
 package com.system.facede.repository;
 
 import com.system.facede.model.CustomUser;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -22,7 +25,7 @@ public interface CustomUserRepository extends JpaRepository<CustomUser, Long> {
             @Param("phoneNumber") String phoneNumber);
 
     List<CustomUser> findByNameContainingIgnoreCaseAndEmailContainingIgnoreCaseAndPhoneNumberContaining(
-            String name, String email, String phoneNumber);
+            String name, String email, String phoneNumber, Sort sort);
 
 
 }

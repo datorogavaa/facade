@@ -19,20 +19,72 @@
       <a th:href="@{/logout}" class="sidebar-link logout-link">Logout</a>
     </nav>
   </aside>
+
   <main class="dashboard-main">
     <section class="dashboard-section">
       <div class="section-header">
         <h2>Notification Preferences</h2>
         <button class="btn-primary" th:onclick="'location.href=\'/notification-preferences/create\''">Add New</button>
       </div>
+
+      <!-- Search and Filter Form -->
+      <form th:action="@{/notification-preferences}" method="get" class="search-form" style="margin-bottom: 1em;">
+        <input type="text" name="username" placeholder="Search by user" th:value="${param.username}" />
+
+        <select name="preferenceType">
+          <option value="">All Preferences</option>
+          <option value="email" th:selected="${param.preferenceType == 'email'}">Email Enabled</option>
+          <option value="sms" th:selected="${param.preferenceType == 'sms'}">SMS Enabled</option>
+          <option value="postal" th:selected="${param.preferenceType == 'postal'}">Postal Enabled</option>
+        </select>
+
+        <input type="hidden" name="sortField" th:value="${sortField}" />
+        <input type="hidden" name="sortDir" th:value="${sortDir}" />
+
+        <button type="submit" class="btn-primary">Search</button>
+      </form>
+
+      <!-- Table -->
       <div class="card">
         <table>
           <thead>
           <tr>
-            <th>User</th>
-            <th>Email Enabled</th>
-            <th>SMS Enabled</th>
-            <th>Postal Enabled</th>
+            <th>
+              <a th:href="@{/notification-preferences(
+                  username=${param.username},
+                  preferenceType=${param.preferenceType},
+                  sortField='customUser.name',
+                  sortDir=${sortField == 'customUser.name' and sortDir == 'asc' ? 'desc' : 'asc'})}">
+                User <span th:text="${sortField == 'customUser.name' ? (sortDir == 'asc' ? '↑' : '↓') : ''}"></span>
+              </a>
+            </th>
+            <th>
+              <a th:href="@{/notification-preferences(
+                  username=${param.username},
+                  preferenceType=${param.preferenceType},
+                  sortField='emailEnabled',
+                  sortDir=${sortField == 'emailEnabled' and sortDir == 'asc' ? 'desc' : 'asc'})}">
+                Email Enabled <span th:text="${sortField == 'emailEnabled' ? (sortDir == 'asc' ? '↑' : '↓') : ''}"></span>
+              </a>
+            </th>
+            <th>
+              <a th:href="@{/notification-preferences(
+                  username=${param.username},
+                  preferenceType=${param.preferenceType},
+                  sortField='smsEnabled',
+                  sortDir=${sortField == 'smsEnabled' and sortDir == 'asc' ? 'desc' : 'asc'})}">
+                SMS Enabled <span th:text="${sortField == 'smsEnabled' ? (sortDir == 'asc' ? '↑' : '↓') : ''}"></span>
+              </a>
+            </th>
+            <th>
+              <a th:href="@{/notification-preferences(
+                  username=${param.username},
+                  preferenceType=${param.preferenceType},
+                  sortField='postalEnabled',
+                  sortDir=${sortField == 'postalEnabled' and sortDir == 'asc' ? 'desc' : 'asc'})}">
+                Postal Enabled <span th:text="${sortField == 'postalEnabled' ? (sortDir == 'asc' ? '↑' : '↓') : ''}"></span>
+              </a>
+            </th>
             <th></th>
           </tr>
           </thead>

@@ -55,7 +55,6 @@ public class NotificationStatusController {
             existing.setNote(updated.getNote());
             existing.setCustomUser(updated.getCustomUser());
 
-            // Save and return updated NotificationStatus
             return statusService.save(existing);
         } else {
             throw new RuntimeException("Status not found with ID: " + id);

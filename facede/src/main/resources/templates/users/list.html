@@ -25,19 +25,37 @@
         <h2>Customers</h2>
         <button class="btn-primary" th:onclick="'location.href=\'/users/new\''">Add Customer</button>
       </div>
+
+      <!-- Search Form -->
       <form th:action="@{/users}" method="get" class="search-form" style="margin-bottom: 1em;">
         <input type="text" name="name" placeholder="Name" th:value="${param.name}" />
         <input type="text" name="email" placeholder="Email" th:value="${param.email}" />
         <input type="text" name="phone" placeholder="Phone" th:value="${param.phone}" />
+        <input type="hidden" name="sortField" th:value="${sortField}" />
+        <input type="hidden" name="sortDir" th:value="${sortDir}" />
         <button type="submit" class="btn-primary">Search</button>
       </form>
+
+      <!-- Customer Table -->
       <div class="card">
         <table>
           <thead>
           <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
+            <th>
+              <a th:href="@{/users(name=${param.name}, email=${param.email}, phone=${param.phone}, sortField='name', sortDir=${sortField == 'name' and sortDir == 'asc' ? 'desc' : 'asc'})}">
+                Name <span th:text="${sortField == 'name' ? (sortDir == 'asc' ? '↑' : '↓') : ''}"></span>
+              </a>
+            </th>
+            <th>
+              <a th:href="@{/users(name=${param.name}, email=${param.email}, phone=${param.phone}, sortField='email', sortDir=${sortField == 'email' and sortDir == 'asc' ? 'desc' : 'asc'})}">
+                Email <span th:text="${sortField == 'email' ? (sortDir == 'asc' ? '↑' : '↓') : ''}"></span>
+              </a>
+            </th>
+            <th>
+              <a th:href="@{/users(name=${param.name}, email=${param.email}, phone=${param.phone}, sortField='phoneNumber', sortDir=${sortField == 'phoneNumber' and sortDir == 'asc' ? 'desc' : 'asc'})}">
+                Phone <span th:text="${sortField == 'phoneNumber' ? (sortDir == 'asc' ? '↑' : '↓') : ''}"></span>
+              </a>
+            </th>
             <th></th>
           </tr>
           </thead>
@@ -54,6 +72,7 @@
           </tbody>
         </table>
       </div>
+
     </section>
   </main>
 </div>
