@@ -15,7 +15,7 @@
             <a th:href="@{/addresses}" class="sidebar-link">Addresses</a>
             <a th:href="@{/notification-preferences}" class="sidebar-link">Preferences</a>
             <a th:href="@{/notification-statuses}" class="sidebar-link">Statuses</a>
-            <a th:href="@{/reports/notification-opt-ins}" class="sidebar-link">Reports</a>
+            <a th:href="@{/reports/notification-status}" class="sidebar-link">Reports</a>
             <a th:href="@{/logout}" class="sidebar-link logout-link">Logout</a>
         </nav>
     </aside>
@@ -33,8 +33,7 @@
                 </div>
                 <div>
                     <label for="phoneNumber">Phone Number:</label>
-                    <input type="text" id="phoneNumber" th:field="*{phoneNumber}" placeholder="Enter phone number" />
-                </div>
+                    <input type="text" id="phoneNumber" th:field="*{phoneNumber}" minlength="9" maxlength="9" pattern="\d*" />                </div>
                 <div style="margin-top: 18px;">
                     <button type="submit" class="btn-primary">Save</button>
                     <a th:href="@{/users}" class="cancel-link">Cancel</a>

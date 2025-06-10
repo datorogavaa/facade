@@ -15,8 +15,7 @@
       <a th:href="@{/addresses}" class="sidebar-link">Addresses</a>
       <a th:href="@{/notification-preferences}" class="sidebar-link">Preferences</a>
       <a th:href="@{/notification-statuses}" class="sidebar-link">Statuses</a>
-      <a th:href="@{/reports/notification-opt-ins}" class="sidebar-link">Reports</a>
-      <a th:href="@{/settings}" class="sidebar-link">Settings</a>
+      <a th:href="@{/reports/notification-status}" class="sidebar-link">Reports</a>
       <a th:href="@{'/admin/reset_password/' + ${admin.id}}" class="sidebar-link">Reset Password</a>
       <a th:href="@{/logout}" class="sidebar-link logout-link">Logout</a>
     </nav>
@@ -34,6 +33,10 @@
       <div class="card">
         <div class="card-title">Opted-In SMS</div>
         <div class="card-value" th:text="${optedInSms}">65</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Opted-In POSTAL</div>
+        <div class="card-value" th:text="${optedInPostal}">65</div>
       </div>
     </div>
     <section class="dashboard-section">
@@ -56,7 +59,7 @@
             <tr th:each="user : ${users}">
               <td th:text="${user.name}">John Doe</td>
               <td th:text="${user.email}">john.doe@example.com</td>
-              <td th:text="${user.phone}">(123) 436-7890</td>
+              <td th:text="${user.phoneNumber}">(123) 436-7890</td>
             </tr>
             </tbody>
           </table>

@@ -15,7 +15,7 @@
       <a th:href="@{/addresses}" class="sidebar-link">Addresses</a>
       <a th:href="@{/notification-preferences}" class="sidebar-link">Preferences</a>
       <a th:href="@{/notification-statuses}" class="sidebar-link active">Statuses</a>
-      <a th:href="@{/reports/notification-opt-ins}" class="sidebar-link">Reports</a>
+      <a th:href="@{/reports/notification-status}" class="sidebar-link">Reports</a>
       <a th:href="@{/logout}" class="sidebar-link logout-link">Logout</a>
     </nav>
   </aside>
@@ -35,12 +35,21 @@
         </div>
         <div>
           <label>Timestamp:
-            <input type="datetime-local" th:field="*{timestamp}" required />
+            <input type="datetime-local"
+                   th:field="*{timestamp}"
+                   th:value="${#temporals.format(status.timestamp, 'yyyy-MM-dd''T''HH:mm')}"
+                   th:min="'2000-01-01T00:00'"
+                   th:max="${#temporals.format(T(java.time.LocalDateTime).now(), 'yyyy-MM-dd''T''HH:mm')}"
+                   required />
           </label>
         </div>
         <div>
           <label>Channel:
-            <input type="text" th:field="*{channel}" required />
+            <select th:field="*{channel}" required>
+              <option value="SMS">SMS</option>
+              <option value="EMAIL">EMAIL</option>
+              <option value="POSTAL">POSTAL</option>
+            </select>
           </label>
         </div>
         <div>

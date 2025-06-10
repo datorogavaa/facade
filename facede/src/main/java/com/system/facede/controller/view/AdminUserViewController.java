@@ -1,10 +1,16 @@
 package com.system.facede.controller.view;
 
+import com.system.facede.dto.NotificationOptInReportDTO;
 import com.system.facede.exception.PasswordEmptyException;
 import com.system.facede.exception.UsernameAlreadyExistsException;
 import com.system.facede.exception.UsernameEmptyException;
+import com.system.facede.model.Address;
 import com.system.facede.model.AdminUser;
+import com.system.facede.model.CustomUser;
+import com.system.facede.service.AddressService;
 import com.system.facede.service.AdminUserService;
+import com.system.facede.service.NotificationOptInReportingService;
+import com.system.facede.service.CustomUserService;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,14 +18,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminUserViewController {
 
     private final AdminUserService adminUserService;
-
-    public AdminUserViewController(AdminUserService adminUserService) {
+    private final NotificationOptInReportingService reportService;
+    private final CustomUserService customUserService;
+    private final AddressService addressService;
+    public AdminUserViewController(AdminUserService adminUserService,
+                                   NotificationOptInReportingService reportService,
+                                   CustomUserService customUserService, AddressService addressService) {
         this.adminUserService = adminUserService;
+        this.reportService = reportService;
+        this.customUserService = customUserService;
+        this.addressService = addressService;
     }
 
     @GetMapping("/list")
@@ -47,10 +62,9 @@ public class AdminUserViewController {
             return "redirect:/admin/dashboard";
         } catch (UsernameAlreadyExistsException e) {
             model.addAttribute("errorMessage", e.getMessage());
-            model.addAttribute("admin", adminUser); // Keeps input filled
-
+            model.addAttribute("admin", adminUser);
             return "admin/create";
-        }  catch (PasswordEmptyException e) {
+        } catch (PasswordEmptyException e) {
             model.addAttribute("errorMessage", e.getMessage());
             model.addAttribute("admin", adminUser);
             return "admin/create";
@@ -60,7 +74,6 @@ public class AdminUserViewController {
             return "admin/create";
         }
     }
-
 
     @GetMapping("/login")
     public String showLoginForm() {
@@ -72,7 +85,6 @@ public class AdminUserViewController {
         return "admin/login";
     }
 
-
     @GetMapping("/dashboard")
     public String showDashboard(Model model) {
         AdminUser admin = adminUserService.getCurrentAdminUser();
@@ -80,9 +92,26 @@ public class AdminUserViewController {
             return "redirect:/admin/login";
         }
         model.addAttribute("admin", admin);
+
+        NotificationOptInReportDTO optInReport = reportService.getNotificationOptInReport();
+        model.addAttribute("optInReport", optInReport);
+
+        List<CustomUser> users = customUserService.getAll();
+        model.addAttribute("users", users);
+
+        // Add addresses
+        List<Address> addresses = addressService.getAll();
+        model.addAttribute("addresses", addresses);
+
+
+        // Add summary card values
+        model.addAttribute("totalCustomers", users.size());
+        model.addAttribute("totalEmails", optInReport.getEmailOptInCount());
+        model.addAttribute("optedInSms", optInReport.getSmsOptInCount());
+        model.addAttribute("optedInPostal", optInReport.getPostalOptInCount());
+
         return "admin/dashboard";
     }
-
 
     @GetMapping("/reset_password/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
@@ -107,9 +136,6 @@ public class AdminUserViewController {
             return "admin/reset_password";
         }
     }
-
-
-
 
     @GetMapping("/delete/{id}")
     public String deleteAdmin(@PathVariable Long id) {
