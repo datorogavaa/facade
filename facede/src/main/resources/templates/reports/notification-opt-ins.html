@@ -2,20 +2,48 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
-  <title>Notification Opt-In Report</title>
+  <title>Opt-In Report</title>
   <link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
-<body class="page page-dashboard">
-
-<h1 class="page-title">Notification Opt-In Report</h1>
-
-<div class="dashboard-nav">
-  <p class="report-item">📧 Email Opt-Ins: <span th:text="${report.emailOptInCount}">0</span></p>
-  <p class="report-item">📱 SMS Opt-Ins: <span th:text="${report.smsOptInCount}">0</span></p>
-  <p class="report-item">✉️ Postal Opt-Ins: <span th:text="${report.postalOptInCount}">0</span></p>
-
-  <a th:href="@{/admin/dashboard}" class="nav-link">← Back to Dashboard</a>
+<body class="dashboard-body">
+<div class="dashboard-container">
+  <aside class="sidebar">
+    <div class="sidebar-title">Customer Notification<br>Business Facade System</div>
+    <nav>
+      <a th:href="@{/admin/dashboard}" class="sidebar-link">Dashboard</a>
+      <a th:href="@{/users}" class="sidebar-link">Customers</a>
+      <a th:href="@{/addresses}" class="sidebar-link">Addresses</a>
+      <a th:href="@{/notification-preferences}" class="sidebar-link">Preferences</a>
+      <a th:href="@{/notification-statuses}" class="sidebar-link">Statuses</a>
+      <a th:href="@{/reports/notification-opt-ins}" class="sidebar-link active">Reports</a>
+      <a th:href="@{/logout}" class="sidebar-link logout-link">Logout</a>
+    </nav>
+  </aside>
+  <main class="dashboard-main">
+    <section class="dashboard-section">
+      <h2>Opt-In Report</h2>
+      <div class="card">
+        <table>
+          <thead>
+          <tr>
+            <th>User</th>
+            <th>Email Opt-In</th>
+            <th>SMS Opt-In</th>
+            <th>Postal Opt-In</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="row : ${reportRows}">
+            <td th:text="${row.userName}">John Doe</td>
+            <td th:text="${row.emailOptIn ? 'Yes' : 'No'}">Yes</td>
+            <td th:text="${row.smsOptIn ? 'Yes' : 'No'}">No</td>
+            <td th:text="${row.postalOptIn ? 'Yes' : 'No'}">Yes</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
 </div>
-
 </body>
 </html>

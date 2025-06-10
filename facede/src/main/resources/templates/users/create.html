@@ -5,32 +5,43 @@
     <title>Create User</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
-<body class="page-user-create">
-
-<div class="center-wrapper">
-    <h2>Create New User</h2>
-
-    <form th:action="@{/users}" th:object="${user}" method="post" class="form-user-create">
-        <div>
-            <label for="name">Name:</label>
-            <input type="text" id="name" th:field="*{name}" placeholder="Enter name" required />
-        </div>
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" th:field="*{email}" placeholder="Enter email" required />
-        </div>
-        <div>
-            <label for="phoneNumber">Phone Number:</label>
-            <input type="text" id="phoneNumber" th:field="*{phoneNumber}" placeholder="Enter phone number" />
-        </div>
-        <div>
-            <button type="submit">Save</button>
-            <a th:href="@{/users}" class="cancel-link">Cancel</a>
-        </div>
-    </form>
-
-    <a th:href="@{/admin/dashboard}" class="back-link">Back To Dashboard</a>
+<body class="dashboard-body">
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <div class="sidebar-title">Customer Notification<br>Business Facade System</div>
+        <nav>
+            <a th:href="@{/admin/dashboard}" class="sidebar-link">Dashboard</a>
+            <a th:href="@{/users}" class="sidebar-link active">Customers</a>
+            <a th:href="@{/addresses}" class="sidebar-link">Addresses</a>
+            <a th:href="@{/notification-preferences}" class="sidebar-link">Preferences</a>
+            <a th:href="@{/notification-statuses}" class="sidebar-link">Statuses</a>
+            <a th:href="@{/reports/notification-opt-ins}" class="sidebar-link">Reports</a>
+            <a th:href="@{/logout}" class="sidebar-link logout-link">Logout</a>
+        </nav>
+    </aside>
+    <main class="dashboard-main">
+        <section class="dashboard-section" style="max-width: 480px;">
+            <h2>Create New User</h2>
+            <form th:action="@{/users}" th:object="${user}" method="post" class="form-user-create">
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" th:field="*{name}" placeholder="Enter name" required />
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" th:field="*{email}" placeholder="Enter email" required />
+                </div>
+                <div>
+                    <label for="phoneNumber">Phone Number:</label>
+                    <input type="text" id="phoneNumber" th:field="*{phoneNumber}" placeholder="Enter phone number" />
+                </div>
+                <div style="margin-top: 18px;">
+                    <button type="submit" class="btn-primary">Save</button>
+                    <a th:href="@{/users}" class="cancel-link">Cancel</a>
+                </div>
+            </form>
+        </section>
+    </main>
 </div>
-
 </body>
 </html>

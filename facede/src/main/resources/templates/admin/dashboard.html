@@ -5,21 +5,90 @@
   <title>Admin Dashboard</title>
   <link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
-<body class="page page-dashboard">
-
-<h1 class="page-title">Welcome to the Admin Dashboard</h1>
-
-<nav class="dashboard-nav">
-  <a th:href="@{/users}" class="nav-link">Manage Users</a>
-  <a th:href="@{/addresses}" class="nav-link">Manage Addresses</a>
-  <a th:href="@{/notification-preferences}" class="nav-link">Manage Preferences</a>
-  <a th:href="@{/notification-statuses}" class="nav-link">Notification Statuses Delivery</a>
-  <a th:href="@{/admin/delete/{id}(id=${admin.id})}" class="nav-link">Delete Account</a>
-  <a th:href="@{/reports/notification-opt-ins}" class="nav-link">Notification Opt-In Report</a>
-  <a th:href="@{/reports/notification-status}" class="nav-link">Notification Status Report</a>
-  <a th:href="@{/admin/reset_password/{id}(id=${admin.id})}" class="nav-link">Reset Password For Your Admin Account</a>
-  <a th:href="@{/logout}" class="nav-link logout-link">Logout</a>
-</nav>
-
+<body class="dashboard-body">
+<div class="dashboard-container">
+  <aside class="sidebar">
+    <div class="sidebar-title">Customer Notification<br>Business Facade System</div>
+    <nav>
+      <a th:href="@{/admin/dashboard}" class="sidebar-link active">Dashboard</a>
+      <a th:href="@{/users}" class="sidebar-link">Customers</a>
+      <a th:href="@{/addresses}" class="sidebar-link">Addresses</a>
+      <a th:href="@{/notification-preferences}" class="sidebar-link">Preferences</a>
+      <a th:href="@{/notification-statuses}" class="sidebar-link">Statuses</a>
+      <a th:href="@{/reports/notification-opt-ins}" class="sidebar-link">Reports</a>
+      <a th:href="@{/settings}" class="sidebar-link">Settings</a>
+      <a th:href="@{'/admin/reset_password/' + ${admin.id}}" class="sidebar-link">Reset Password</a>
+      <a th:href="@{/logout}" class="sidebar-link logout-link">Logout</a>
+    </nav>
+  </aside>
+  <main class="dashboard-main">
+    <div class="dashboard-cards">
+      <div class="card">
+        <div class="card-title">Total Customers</div>
+        <div class="card-value" th:text="${totalCustomers}">120</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Email Addresses</div>
+        <div class="card-value" th:text="${totalEmails}">105</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Opted-In SMS</div>
+        <div class="card-value" th:text="${optedInSms}">65</div>
+      </div>
+    </div>
+    <section class="dashboard-section">
+      <h2>Customers</h2>
+      <div class="section-row">
+        <div class="section-table">
+          <div class="section-header">
+            <span>Customers</span>
+            <button class="btn-primary">Create</button>
+          </div>
+          <table>
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+              <td th:text="${user.name}">John Doe</td>
+              <td th:text="${user.email}">john.doe@example.com</td>
+              <td th:text="${user.phone}">(123) 436-7890</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="section-table">
+          <div class="section-header">
+            <span>Addresses</span>
+            <button class="btn-primary">Add New</button>
+          </div>
+          <table>
+            <thead>
+            <tr>
+              <th>Type</th>
+              <th>Address</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="address : ${addresses}">
+              <td th:text="${address.type}">Email</td>
+              <td th:text="${address.value}">john.doe@example.com</td>
+              <td>
+                <a href="#" class="table-link">Edit</a>
+                <a href="#" class="table-link">Remove</a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
 </body>
 </html>

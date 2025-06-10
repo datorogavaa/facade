@@ -3,34 +3,128 @@
 <head>
     <meta charset="UTF-8" />
     <title>Create Admin</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <style>
+        body.page-create-admin {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          background: #f5f6fa;
+        }
+        .center-container {
+          width: 100%;
+          max-width: 400px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .page-title {
+          font-size: 2rem;
+          font-weight: 600;
+          color: #222;
+          margin: 0 0 24px 0;
+          text-align: center;
+        }
+        .alert {
+          padding: 10px 16px;
+          border-radius: 6px;
+          font-size: 1rem;
+          margin-bottom: 8px;
+          text-align: center;
+        }
+        .alert-error {
+          background: #ffeaea;
+          color: #d8000c;
+          border: 1px solid #d8000c;
+        }
+        .form-create-admin {
+          background: #fff;
+          border-radius: 10px;
+          box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+          padding: 32px 24px;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          width: 100%;
+          max-width: 400px;
+          margin: 0 auto;
+        }
+        .form-label {
+          display: flex;
+          flex-direction: column;
+          font-size: 1rem;
+          color: #333;
+          gap: 6px;
+        }
+        .form-input {
+          padding: 8px 12px;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          font-size: 1rem;
+          background: #fafbfc;
+          transition: border 0.2s;
+        }
+        .form-input:focus {
+          border: 1.5px solid #007bff;
+          outline: none;
+        }
+        .btn.btn-primary {
+          background: #007bff;
+          color: #fff;
+          border: none;
+          border-radius: 6px;
+          padding: 10px 0;
+          font-size: 1rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: background 0.2s;
+        }
+        .btn.btn-primary:hover {
+          background: #0056b3;
+        }
+        .form-footer-text {
+          text-align: center;
+          font-size: 0.95rem;
+          color: #555;
+          margin-top: 12px;
+        }
+        .link {
+          color: #007bff;
+          text-decoration: none;
+          font-weight: 500;
+        }
+        .link:hover {
+          text-decoration: underline;
+        }
+    </style>
 </head>
 <body class="page page-create-admin">
 
-<h2 class="page-title">Create Admin</h2>
+<div class="center-container">
+    <h2 class="page-title">Create Admin</h2>
 
-<div th:if="${errorMessage}" class="alert alert-error">
-    <p th:text="${errorMessage}"></p>
+    <div th:if="${errorMessage}" class="alert alert-error">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
+    <form th:action="@{/admin/create}" th:object="${admin}" method="post" class="form form-create-admin">
+        <label class="form-label">
+            Username:
+            <input type="text" th:field="*{username}" class="form-input" />
+        </label>
+
+        <label class="form-label">
+            Password:
+            <input type="password" th:field="*{password}" class="form-input" />
+        </label>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+
+    <p class="form-footer-text">
+        <a th:href="@{/admin/login}" class="link">Back to login</a>
+    </p>
 </div>
-
-<form th:action="@{/admin/create}" th:object="${admin}" method="post" class="form form-create-admin">
-    <label class="form-label">
-        Username:
-        <input type="text" th:field="*{username}" class="form-input" />
-    </label>
-
-    <label class="form-label">
-        Password:
-        <input type="password" th:field="*{password}" class="form-input" />
-    </label>
-
-    <button type="submit" class="btn btn-primary">Save</button>
-
-</form>
-
-<p class="form-footer-text">
-    <a th:href="@{/admin/login}" class="link">Back to login</a>
-</p>
 
 </body>
 </html>

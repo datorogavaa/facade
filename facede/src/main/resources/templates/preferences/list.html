@@ -5,42 +5,52 @@
   <title>Notification Preferences</title>
   <link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
-<body class="page-notification-preferences-list">
-
-<div class="center-wrapper">
-  <h2>Notification Preferences</h2>
-
-  <a th:href="@{/notification-preferences/new}" class="btn btn-add">Add Preference</a>
-
-  <table class="data-table">
-    <thead>
-    <tr>
-      <th>User</th>
-      <th>Email Opt-In</th>
-      <th>SMS Opt-In</th>
-      <th>Postal Opt-In</th>
-      <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="preference : ${preferences}">
-      <td th:text="${preference.customUser.name}"></td>
-      <td th:text="${preference.emailEnabled}"></td>
-      <td th:text="${preference.smsEnabled}"></td>
-      <td th:text="${preference.postalEnabled}"></td>
-      <td>
-        <a th:href="@{'/notification-preferences/edit/' + ${preference.id}}" class="btn btn-edit">Edit</a>
-<!--        <form th:action="@{'/notification-preferences/delete/' + ${preference.id}}" method="post" style="display:inline;">-->
-<!--          <button type="submit" class="btn btn-delete">Delete</button>-->
-<!--        </form>-->
-      </td>
-    </tr>
-    </tbody>
-  </table>
-
-  <a th:href="@{/admin/dashboard}" class="back-link">Back To Dashboard</a>
+<body class="dashboard-body">
+<div class="dashboard-container">
+  <aside class="sidebar">
+    <div class="sidebar-title">Customer Notification<br>Business Facade System</div>
+    <nav>
+      <a th:href="@{/admin/dashboard}" class="sidebar-link">Dashboard</a>
+      <a th:href="@{/users}" class="sidebar-link">Customers</a>
+      <a th:href="@{/addresses}" class="sidebar-link">Addresses</a>
+      <a th:href="@{/notification-preferences}" class="sidebar-link active">Preferences</a>
+      <a th:href="@{/notification-statuses}" class="sidebar-link">Statuses</a>
+      <a th:href="@{/reports/notification-opt-ins}" class="sidebar-link">Reports</a>
+      <a th:href="@{/logout}" class="sidebar-link logout-link">Logout</a>
+    </nav>
+  </aside>
+  <main class="dashboard-main">
+    <section class="dashboard-section">
+      <div class="section-header">
+        <h2>Notification Preferences</h2>
+        <button class="btn-primary" th:onclick="'location.href=\'/notification-preferences/create\''">Add New</button>
+      </div>
+      <div class="card">
+        <table>
+          <thead>
+          <tr>
+            <th>User</th>
+            <th>Email Enabled</th>
+            <th>SMS Enabled</th>
+            <th>Postal Enabled</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="preference : ${preferences}">
+            <td th:text="${preference.customUser.name}">John Doe</td>
+            <td th:text="${preference.emailEnabled ? 'Yes' : 'No'}">Yes</td>
+            <td th:text="${preference.smsEnabled ? 'Yes' : 'No'}">Yes</td>
+            <td th:text="${preference.postalEnabled ? 'Yes' : 'No'}">Yes</td>
+            <td>
+              <a th:href="@{'/notification-preferences/edit/' + ${preference.id}}" class="table-link">Edit</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
 </div>
-
 </body>
 </html>
-

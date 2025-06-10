@@ -2,37 +2,54 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
-  <title>User List</title>
+  <title>Customers</title>
   <link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
-<body class="page-user-list">
-
-<div class="center-wrapper">
-  <h2>Users</h2>
-  <a th:href="@{/users/new}" class="btn btn-add">Add User</a>
-
-  <table class="user-table">
-    <thead>
-    <tr>
-      <th>ID</th><th>Name</th><th>Email</th><th>Phone Number</th><th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="user : ${users}">
-      <td th:text="${user.id}"></td>
-      <td th:text="${user.name}"></td>
-      <td th:text="${user.email}"></td>
-      <td th:text="${user.phoneNumber}"></td>
-      <td>
-        <a th:href="@{'/users/edit/' + ${user.id}}" class="btn btn-edit">Edit</a>
-        <a th:href="@{'/users/delete/' + ${user.id}}" class="btn btn-delete">Delete</a>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-
-  <a th:href="@{/admin/dashboard}" class="back-link">Back To Dashboard</a>
+<body class="dashboard-body">
+<div class="dashboard-container">
+  <aside class="sidebar">
+    <div class="sidebar-title">Customer Notification<br>Business Facade System</div>
+    <nav>
+      <a th:href="@{/admin/dashboard}" class="sidebar-link">Dashboard</a>
+      <a th:href="@{/users}" class="sidebar-link active">Customers</a>
+      <a th:href="@{/addresses}" class="sidebar-link">Addresses</a>
+      <a th:href="@{/notification-preferences}" class="sidebar-link">Preferences</a>
+      <a th:href="@{/notification-statuses}" class="sidebar-link">Statuses</a>
+      <a th:href="@{/reports/notification-opt-ins}" class="sidebar-link">Reports</a>
+      <a th:href="@{/logout}" class="sidebar-link logout-link">Logout</a>
+    </nav>
+  </aside>
+  <main class="dashboard-main">
+    <section class="dashboard-section">
+      <div class="section-header">
+        <h2>Customers</h2>
+        <button class="btn-primary" th:onclick="'location.href=\'/users/new\''">Add Customer</button>
+      </div>
+      <div class="card">
+        <table>
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="user : ${users}">
+            <td th:text="${user.name}">John Doe</td>
+            <td th:text="${user.email}">john.doe@example.com</td>
+            <td th:text="${user.phoneNumber}">(123) 436-7890</td>
+            <td>
+              <a th:href="@{'/users/edit/' + ${user.id}}" class="table-link">Edit</a>
+              <a th:href="@{'/users/delete/' + ${user.id}}" class="table-link">Remove</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
 </div>
-
 </body>
 </html>
