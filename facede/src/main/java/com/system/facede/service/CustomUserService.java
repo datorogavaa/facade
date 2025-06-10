@@ -1,5 +1,6 @@
 package com.system.facede.service;
 
+import com.system.facede.dto.CustomUserBatchUpdateRequest;
 import com.system.facede.model.CustomUser;
 import com.system.facede.repository.CustomUserRepository;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,26 @@ public class CustomUserService {
 
     public CustomUser save(CustomUser user) {
         return customUserRepository.save(user);
+    }
+
+
+
+    @Transactional
+    public void updateUsersBatch(List<CustomUserBatchUpdateRequest> requests) {
+        if (requests == null || requests.isEmpty()) {
+            throw new IllegalArgumentException("Requests list cannot be empty.");
+        }
+        for (CustomUserBatchUpdateRequest request : requests) {
+            if (request.getUserId() == null) {
+                throw new IllegalArgumentException("User ID cannot be null.");
+            }
+            customUserRepository.updateUser(
+                    request.getUserId(),
+                    request.getName(),
+                    request.getEmail(),
+                    request.getPhoneNumber()
+            );
+        }
     }
 
     public void delete(Long id) {

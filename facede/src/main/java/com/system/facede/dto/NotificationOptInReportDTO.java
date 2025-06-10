@@ -1,37 +1,37 @@
 package com.system.facede.dto;
 
 public class NotificationOptInReportDTO {
-    private long emailOptInCount;
-    private long smsOptInCount;
-    private long postalOptInCount;
+    private Long emailOptInCount;
+    private Long smsOptInCount;
+    private Long postalOptInCount;
 
-    public NotificationOptInReportDTO(long emailOptInCount, long smsOptInCount, long postalOptInCount) {
+    public NotificationOptInReportDTO(Long emailOptInCount, Long smsOptInCount, Long postalOptInCount) {
         this.emailOptInCount = emailOptInCount;
         this.smsOptInCount = smsOptInCount;
         this.postalOptInCount = postalOptInCount;
     }
 
-    public long getEmailOptInCount() {
+    public Long getEmailOptInCount() {
         return emailOptInCount;
     }
 
-    public void setEmailOptInCount(long emailOptInCount) {
+    public void setEmailOptInCount(Long emailOptInCount) {
         this.emailOptInCount = emailOptInCount;
     }
 
-    public long getSmsOptInCount() {
+    public Long getSmsOptInCount() {
         return smsOptInCount;
     }
 
-    public void setSmsOptInCount(long smsOptInCount) {
+    public void setSmsOptInCount(Long smsOptInCount) {
         this.smsOptInCount = smsOptInCount;
     }
 
-    public long getPostalOptInCount() {
+    public Long getPostalOptInCount() {
         return postalOptInCount;
     }
 
-    public void setPostalOptInCount(long postalOptInCount) {
+    public void setPostalOptInCount(Long postalOptInCount) {
         this.postalOptInCount = postalOptInCount;
     }
 }

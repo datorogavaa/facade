@@ -1,37 +1,37 @@
 package com.system.facede.dto;
 
 public class NotificationStatusReportDTO {
-    private long deliveredCount;
-    private long failedCount;
-    private long pendingCount;
+    private Long deliveredCount;
+    private Long failedCount;
+    private Long pendingCount;
 
-    public NotificationStatusReportDTO(long deliveredCount, long failedCount, long pendingCount) {
+    public NotificationStatusReportDTO(Long deliveredCount, Long failedCount, Long pendingCount) {
         this.deliveredCount = deliveredCount;
         this.failedCount = failedCount;
         this.pendingCount = pendingCount;
     }
 
-    public long getDeliveredCount() {
+    public Long getDeliveredCount() {
         return deliveredCount;
     }
 
-    public void setDeliveredCount(long deliveredCount) {
+    public void setDeliveredCount(Long deliveredCount) {
         this.deliveredCount = deliveredCount;
     }
 
-    public long getFailedCount() {
+    public Long getFailedCount() {
         return failedCount;
     }
 
-    public void setFailedCount(long failedCount) {
+    public void setFailedCount(Long failedCount) {
         this.failedCount = failedCount;
     }
 
-    public long getPendingCount() {
+    public Long getPendingCount() {
         return pendingCount;
     }
 
-    public void setPendingCount(long pendingCount) {
+    public void setPendingCount(Long pendingCount) {
         this.pendingCount = pendingCount;
     }
 }

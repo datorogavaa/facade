@@ -1,5 +1,6 @@
 package com.system.facede.controller.rest;
 
+import com.system.facede.dto.CustomUserBatchUpdateRequest;
 import com.system.facede.model.CustomUser;
 import com.system.facede.service.CustomUserService;
 import org.springframework.http.HttpStatus;
@@ -57,6 +58,17 @@ public class CustomUserController {
         }
     }
 
+
+    @PutMapping("/update-batch")
+    public ResponseEntity<?> updateUser(@RequestBody List<CustomUserBatchUpdateRequest> request) {
+        try {
+            customUserService.updateUsersBatch(request);
+            return ResponseEntity.ok("Batch update successful");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Batch update failed: " + e.getMessage());
+        }
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteCustomUser(@PathVariable Long id) {
