@@ -33,6 +33,7 @@
                 <table>
                     <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Username</th>
                         <th>Role</th>
                         <th></th>
@@ -40,6 +41,7 @@
                     </thead>
                     <tbody>
                     <tr th:each="admin : ${adminUsers}">
+                        <td th:text="${admin.id}">Id</td>
                         <td th:text="${admin.username}">admin</td>
                         <td th:text="${admin.role}">ROLE_ADMIN</td>
                         <td>

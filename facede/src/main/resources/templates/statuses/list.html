@@ -33,6 +33,7 @@
                 <table>
                     <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Status</th>
                         <th>Timestamp</th>
                         <th>Channel</th>
@@ -44,6 +45,7 @@
                     </thead>
                     <tbody>
                     <tr th:each="status : ${statuses}">
+                        <td th:text="${status.id}">Id</td>
                         <td th:text="${status.status}">DELIVERED</td>
                         <td th:text="${#temporals.format(status.timestamp, 'yyyy-MM-dd HH:mm')}"></td>
                         <td th:text="${status.channel}">EMAIL</td>

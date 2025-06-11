@@ -46,6 +46,11 @@
           <thead>
           <tr>
             <th>
+              <a>
+                Id <span></span>
+              </a>
+            </th>
+            <th>
               <a th:href="@{/users(name=${param.name}, email=${param.email}, phone=${param.phone}, sortField='name', sortDir=${sortField == 'name' and sortDir == 'asc' ? 'desc' : 'asc'})}">
                 Name <span th:text="${sortField == 'name' ? (sortDir == 'asc' ? '↑' : '↓') : ''}"></span>
               </a>
@@ -65,6 +70,7 @@
           </thead>
           <tbody>
           <tr th:each="user : ${users}">
+            <td th:text="${user.id}">1</td>
             <td th:text="${user.name}">John Doe</td>
             <td th:text="${user.email}">john.doe@example.com</td>
             <td th:text="${user.phoneNumber}">(123) 436-7890</td>

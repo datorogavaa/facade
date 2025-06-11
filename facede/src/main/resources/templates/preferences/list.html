@@ -37,6 +37,9 @@
           <thead>
           <tr>
             <th>
+                Id
+            </th>
+            <th>
                 User
             </th>
             <th>
@@ -52,6 +55,7 @@
           </thead>
           <tbody>
           <tr th:each="preference : ${preferences}">
+            <td th:text="${preference.customUser.id}">Id</td>
             <td th:text="${preference.customUser.name}">John Doe</td>
             <td th:text="${preference.emailEnabled ? 'Yes' : 'No'}">Yes</td>
             <td th:text="${preference.smsEnabled ? 'Yes' : 'No'}">Yes</td>

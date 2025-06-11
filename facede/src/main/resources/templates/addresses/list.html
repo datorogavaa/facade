@@ -19,7 +19,7 @@
       <a th:href="@{/addresses}" class="sidebar-link active">Addresses</a>
       <a th:href="@{/notification-preferences}" class="sidebar-link">Preferences</a>
       <a th:href="@{/notification-statuses}" class="sidebar-link">Statuses</a>
-      <a th:href="@{/reports/notification-status-reports}" class="sidebar-link">Reports</a>
+      <a th:href="@{/reports/notification-status}" class="sidebar-link">Reports</a>
       <a th:href="@{/logout}" class="sidebar-link logout-link">Logout</a>
     </nav>
   </aside>
@@ -33,6 +33,7 @@
         <table>
           <thead>
           <tr>
+            <th>ID</th>
             <th>Type</th>
             <th>Address</th>
             <th>User</th>
@@ -41,6 +42,7 @@
           </thead>
           <tbody>
           <tr th:each="address : ${addresses}">
+            <td th:text="${address.id}">Email</td>
             <td th:text="${address.type}">Email</td>
             <td th:text="${address.value}">john.doe@example.com</td>
             <td th:text="${address.customUser.name}">John Doe</td>

@@ -54,6 +54,7 @@
           <table>
             <thead>
             <tr>
+              <th>Id</th>
               <th>Name</th>
               <th>Email</th>
               <th>Phone</th>
@@ -61,6 +62,7 @@
             </thead>
             <tbody>
             <tr th:each="user : ${users}">
+              <td th:text="${user.id}">John Doe</td>
               <td th:text="${user.name}">John Doe</td>
               <td th:text="${user.email}">john.doe@example.com</td>
               <td th:text="${user.phoneNumber}">(123) 436-7890</td>
@@ -76,6 +78,7 @@
           <table>
             <thead>
             <tr>
+              <th>Id</th>
               <th>Type</th>
               <th>Address</th>
               <th></th>
