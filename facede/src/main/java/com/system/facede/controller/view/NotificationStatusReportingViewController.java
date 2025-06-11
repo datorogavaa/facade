@@ -38,6 +38,6 @@ public class NotificationStatusReportingViewController {
         model.addAttribute("failedPostalCount", statusReport.getFailedPostalCount());
         model.addAttribute("pendingPostalCount", statusReport.getPendingPostalCount());
 
-        return "/reports/notification-status-report";
+        return "reports/notification-status-report";
     }
 }

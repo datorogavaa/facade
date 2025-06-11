@@ -13,7 +13,6 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/facade
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: Prod12
-      JWT_SECRET: TmYyb2w2W1zk9Pr4cVZfRg23IccH6AfPqjSO2NeT2BfU3ZYztZmOouQEKtmn4dI6JZwK64V1wTXI+4qTwLHD7g==
       SPRING_APPLICATION_NAME: facede
       SERVER_PORT: 8081
     networks:
