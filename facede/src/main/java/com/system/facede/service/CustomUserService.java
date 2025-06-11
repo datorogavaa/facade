@@ -69,6 +69,18 @@ public class CustomUserService {
         return customUserRepository.existsByPhoneNumber(phoneNumber);
     }
 
+    public Optional<CustomUser> findByEmail(String email) {
+        return customUserRepository.findByEmail(email);
+    }
+
+    public Optional<CustomUser> findByName(String name) {
+        return customUserRepository.findByName(name);
+    }
+
+    public Optional<CustomUser> findByPhoneNumber(String phoneNumber) {
+        return customUserRepository.findByPhoneNumber(phoneNumber);
+    }
+
 
 
     @Transactional

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/addresses")
@@ -20,13 +21,11 @@ public class AddressViewController {
         this.customUserService = customUserService;
     }
 
-
     @GetMapping
     public String listAddresses(Model model) {
         model.addAttribute("addresses", addressService.getAll());
         return "addresses/list";
     }
-
 
     @GetMapping("/new")
     public String showCreateForm(Model model) {
@@ -37,8 +36,10 @@ public class AddressViewController {
 
     @PostMapping
     public String createAddress(@ModelAttribute Address address, Model model) {
-        if (addressService.addressExists(address)) {
-            model.addAttribute("errorMessage", "Address already exists for this user.");
+        address.setValue(address.getValue().trim().toLowerCase());
+
+        if (addressService.addressExistsGlobally(address)) {
+            model.addAttribute("errorMessage", "This address type and value is already used by another user.");
             model.addAttribute("address", address);
             model.addAttribute("users", customUserService.getAll());
             return "addresses/create";
@@ -51,16 +52,32 @@ public class AddressViewController {
 
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
-        addressService.getById(id).ifPresent(address -> model.addAttribute("address", address));
+        Optional<Address> addressOpt = addressService.getById(id);
+        if (addressOpt.isEmpty()) {
+            model.addAttribute("errorMessage", "Address not found.");
+            return "redirect:/addresses";
+        }
+
+        model.addAttribute("address", addressOpt.get());
         model.addAttribute("users", customUserService.getAll());
         return "addresses/edit";
     }
 
     @PostMapping("/update")
-    public String updateAddress(@ModelAttribute Address address) {
+    public String updateAddress(@ModelAttribute Address address, Model model) {
+        address.setValue(address.getValue().trim().toLowerCase());
+
+        if (addressService.addressExistsGloballyForOther(address)) {
+            model.addAttribute("errorMessage", "This address type and value is already used by another user.");
+            model.addAttribute("address", address);
+            model.addAttribute("users", customUserService.getAll());
+            return "addresses/edit";
+        }
+
         addressService.save(address);
         return "redirect:/addresses";
     }
+
 
     @GetMapping("/delete/{id}")
     public String deleteAddress(@PathVariable Long id) {

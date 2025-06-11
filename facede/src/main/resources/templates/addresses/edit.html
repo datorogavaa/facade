@@ -14,7 +14,6 @@
             <th:block th:if="${#authentication.name == 'superadmin'}">
                 <a th:href="@{/admin/list}" class="sidebar-link active">Admin Users</a>
             </th:block>
-
             <a th:href="@{/users}" class="sidebar-link">Customers</a>
             <a th:href="@{/addresses}" class="sidebar-link active">Addresses</a>
             <a th:href="@{/notification-preferences}" class="sidebar-link">Preferences</a>
@@ -23,11 +22,19 @@
             <a th:href="@{/logout}" class="sidebar-link logout-link">Logout</a>
         </nav>
     </aside>
+
     <main class="dashboard-main">
         <section class="dashboard-section" style="max-width: 480px;">
             <h2>Edit Address</h2>
+
+            <!-- Error message display -->
+            <div th:if="${errorMessage}" class="error-message" style="color: red; margin-bottom: 16px;">
+                <p th:text="${errorMessage}"></p>
+            </div>
+
             <form th:action="@{/addresses/update}" th:object="${address}" method="post" class="form-edit-address">
                 <input type="hidden" th:field="*{id}" />
+
                 <div>
                     <label>Type:
                         <select th:field="*{type}" required>
@@ -37,18 +44,23 @@
                         </select>
                     </label>
                 </div>
+
                 <div>
                     <label>Address:
                         <input type="text" th:field="*{value}" required />
                     </label>
                 </div>
+
                 <div>
                     <label>User:
                         <select th:field="*{customUser.id}">
-                            <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.name}"></option>
+                            <option th:each="user : ${users}"
+                                    th:value="${user.id}"
+                                    th:text="${user.name}"></option>
                         </select>
                     </label>
                 </div>
+
                 <div style="margin-top: 18px;">
                     <button type="submit" class="btn-primary">Update</button>
                     <a th:href="@{/addresses}" class="cancel-link">Cancel</a>

@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CustomUserRepository extends JpaRepository<CustomUser, Long> {
-    Optional<CustomUser> findByEmail(String email);
     @Modifying
     @Transactional
     @Query("UPDATE CustomUser u SET u.name = :name, u.email = :email, u.phoneNumber = :phoneNumber WHERE u.id = :userId")
@@ -30,5 +29,9 @@ public interface CustomUserRepository extends JpaRepository<CustomUser, Long> {
     boolean existsByEmail(String email);
     boolean existsByName(String name);
     boolean existsByPhoneNumber(String phoneNumber);
+    Optional<CustomUser> findByEmail(String email);
+    Optional<CustomUser> findByName(String name);
+    Optional<CustomUser> findByPhoneNumber(String phoneNumber);
+
 
 }

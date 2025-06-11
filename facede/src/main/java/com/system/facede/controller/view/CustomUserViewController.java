@@ -100,22 +100,27 @@ public class CustomUserViewController {
 
     @PostMapping("/update")
     public String updateUser(@ModelAttribute("user") CustomUser user, Model model) {
-        // Check for duplicate email
-        if (user.getEmail() != null && customUserService.existsByEmail(user.getEmail())) {
+        Long currentUserId = user.getId();
+
+        // Check email uniqueness
+        Optional<CustomUser> existingEmail = customUserService.findByEmail(user.getEmail());
+        if (existingEmail.isPresent() && !existingEmail.get().getId().equals(currentUserId)) {
             model.addAttribute("errorMessage", "A user with this email already exists.");
             model.addAttribute("user", user);
             return "users/edit";
         }
 
-        // Check for duplicate name
-        if (user.getName() != null && customUserService.existsByName(user.getName())) {
+        // Check username uniqueness
+        Optional<CustomUser> existingName = customUserService.findByName(user.getName());
+        if (existingName.isPresent() && !existingName.get().getId().equals(currentUserId)) {
             model.addAttribute("errorMessage", "A user with this username already exists.");
             model.addAttribute("user", user);
             return "users/edit";
         }
 
-        // Check for duplicate phone number
-        if (user.getPhoneNumber() != null && customUserService.existsByPhoneNumber(user.getPhoneNumber())) {
+        // Check phone number uniqueness
+        Optional<CustomUser> existingPhone = customUserService.findByPhoneNumber(user.getPhoneNumber());
+        if (existingPhone.isPresent() && !existingPhone.get().getId().equals(currentUserId)) {
             model.addAttribute("errorMessage", "A user with this phone number already exists.");
             model.addAttribute("user", user);
             return "users/edit";
@@ -125,9 +130,6 @@ public class CustomUserViewController {
         customUserService.save(user);
         return "redirect:/users";
     }
-
-
-
 
 
     @GetMapping("/delete/{id}")
