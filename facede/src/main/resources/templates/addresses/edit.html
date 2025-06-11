@@ -4,6 +4,61 @@
     <meta charset="UTF-8" />
     <title>Edit Address</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <style>
+        .card {
+          background: #fff;
+          border-radius: 10px;
+          box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+          padding: 32px 32px 24px 32px;
+          max-width: 420px;
+          margin: 0 auto;
+          border: 1px solid #e5e7eb;
+        }
+        .form-group {
+          margin-bottom: 20px;
+        }
+        .form-label {
+          display: block;
+          font-weight: 500;
+          margin-bottom: 8px;
+        }
+        .form-control, select {
+          width: 100%;
+          padding: 8px 12px;
+          border: 1px solid #d1d5db;
+          border-radius: 6px;
+          font-size: 1rem;
+          background: #f9fafb;
+        }
+        .btn-primary {
+          background: #2563eb;
+          color: #fff;
+          border: none;
+          border-radius: 6px;
+          padding: 10px 24px;
+          font-size: 1rem;
+          cursor: pointer;
+          font-weight: 500;
+          transition: background 0.2s;
+        }
+        .btn-primary:hover {
+          background: #1d4ed8;
+        }
+        .cancel-link {
+          margin-left: 16px;
+          color: #6b7280;
+          text-decoration: none;
+          font-size: 1rem;
+        }
+        .cancel-link:hover {
+          text-decoration: underline;
+        }
+        h2 {
+          margin-bottom: 24px;
+          font-size: 1.4rem;
+          font-weight: 600;
+        }
+    </style>
 </head>
 <body class="dashboard-body">
 <div class="dashboard-container">
@@ -25,47 +80,44 @@
 
     <main class="dashboard-main">
         <section class="dashboard-section" style="max-width: 480px;">
-            <h2>Edit Address</h2>
+            <div class="card">
+                <h2>Edit Address</h2>
 
-            <!-- Error message display -->
-            <div th:if="${errorMessage}" class="error-message" style="color: red; margin-bottom: 16px;">
-                <p th:text="${errorMessage}"></p>
-            </div>
+                <!-- Error message display -->
+                <div th:if="${errorMessage}" class="error-message" style="color: red; margin-bottom: 16px;">
+                    <p th:text="${errorMessage}"></p>
+                </div>
 
-            <form th:action="@{/addresses/update}" th:object="${address}" method="post" class="form-edit-address">
-                <input type="hidden" th:field="*{id}" />
+                <form th:action="@{/addresses/update}" th:object="${address}" method="post" class="form-edit-address">
+                    <input type="hidden" th:field="*{id}" />
 
-                <div>
-                    <label>Type:
-                        <select th:field="*{type}" required>
+                    <div class="form-group">
+                        <label class="form-label">Type</label>
+                        <select th:field="*{type}" class="form-control" required>
                             <option value="Email">Email</option>
                             <option value="SMS">SMS</option>
                             <option value="Postal">Postal</option>
                         </select>
-                    </label>
-                </div>
+                    </div>
 
-                <div>
-                    <label>Address:
-                        <input type="text" th:field="*{value}" required />
-                    </label>
-                </div>
+                    <div class="form-group">
+                        <label class="form-label">Address</label>
+                        <input type="text" th:field="*{value}" class="form-control" required />
+                    </div>
 
-                <div>
-                    <label>User:
-                        <select th:field="*{customUser.id}">
-                            <option th:each="user : ${users}"
-                                    th:value="${user.id}"
-                                    th:text="${user.name}"></option>
+                    <div class="form-group">
+                        <label class="form-label">User</label>
+                        <select th:field="*{customUser.id}" class="form-control">
+                            <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.name}"></option>
                         </select>
-                    </label>
-                </div>
+                    </div>
 
-                <div style="margin-top: 18px;">
-                    <button type="submit" class="btn-primary">Update</button>
-                    <a th:href="@{/addresses}" class="cancel-link">Cancel</a>
-                </div>
-            </form>
+                    <div style="margin-top: 18px;">
+                        <button type="submit" class="btn-primary">Update</button>
+                        <a th:href="@{/addresses}" class="cancel-link">Cancel</a>
+                    </div>
+                </form>
+            </div>
         </section>
     </main>
 </div>
