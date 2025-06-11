@@ -2,12 +2,16 @@ package com.system.facede.controller.view;
 
 import com.system.facede.dto.NotificationStatusReportDTO;
 import com.system.facede.service.NotificationStatusReportingService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class NotificationStatusReportingViewController {
+
+    private static final Logger logger = LoggerFactory.getLogger(NotificationStatusReportingViewController.class);
 
     private final NotificationStatusReportingService notificationStatusReportingService;
 
@@ -17,11 +21,11 @@ public class NotificationStatusReportingViewController {
 
     @GetMapping("/reports/notification-status")
     public String getNotificationStatusReport(Model model) {
+        logger.info("Fetching notification status report");
         NotificationStatusReportDTO statusReport = notificationStatusReportingService.getNotificationStatusReport();
 
         model.addAttribute("statusReport", statusReport);
 
-        // Also add individual attributes for easier Thymeleaf binding
         model.addAttribute("deliveredSmsCount", statusReport.getDeliveredSmsCount());
         model.addAttribute("failedSmsCount", statusReport.getFailedSmsCount());
         model.addAttribute("pendingSmsCount", statusReport.getPendingSmsCount());
