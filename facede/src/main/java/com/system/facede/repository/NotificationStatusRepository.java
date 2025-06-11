@@ -11,7 +11,6 @@ import java.util.List;
 public interface NotificationStatusRepository extends JpaRepository<NotificationStatus, Long> {
     List<NotificationStatus> findByCustomUserId(Long customUserId);
 
-    // Custom query to aggregate notification status counts by channel and status
     @Query("SELECT new com.system.facede.dto.NotificationStatusReportDTO(" +
             "SUM(CASE WHEN ns.channel = 'SMS' AND ns.status = 'DELIVERED' THEN 1 ELSE 0 END), " +
             "SUM(CASE WHEN ns.channel = 'SMS' AND ns.status = 'FAILED' THEN 1 ELSE 0 END), " +

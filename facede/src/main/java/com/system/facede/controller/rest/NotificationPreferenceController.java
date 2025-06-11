@@ -68,7 +68,7 @@ public class NotificationPreferenceController {
 
     @PostMapping("/batch")
     public ResponseEntity<String> updatePreferencesBatch(
-            @RequestParam List<Long> userIds,  // List of customer IDs to update
+            @RequestParam List<Long> userIds,
             @RequestParam boolean emailEnabled,
             @RequestParam boolean smsEnabled,
             @RequestParam boolean postalEnabled

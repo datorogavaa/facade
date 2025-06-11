@@ -14,15 +14,6 @@ public interface AddressRepository extends JpaRepository<Address, Long> {
 
     @Query("SELECT CASE WHEN COUNT(a) > 0 THEN true ELSE false END " +
             "FROM Address a WHERE a.type = :type " +
-            "AND LOWER(TRIM(a.value)) = LOWER(TRIM(:value)) " +
-            "AND a.customUser.id = :userId")
-    boolean existsNormalized(@Param("type") String type,
-                             @Param("value") String value,
-                             @Param("userId") Long userId);
-
-
-    @Query("SELECT CASE WHEN COUNT(a) > 0 THEN true ELSE false END " +
-            "FROM Address a WHERE a.type = :type " +
             "AND LOWER(TRIM(a.value)) = LOWER(TRIM(:value))")
     boolean existsByTypeAndNormalizedValue(@Param("type") String type,
                                            @Param("value") String value);

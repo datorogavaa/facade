@@ -27,7 +27,6 @@ public class NotificationStatusReportDTO {
         this.pendingPostalCount = pendingPostalCount;
     }
 
-    // Getters and setters for all fields
 
     public Long getDeliveredSmsCount() { return deliveredSmsCount; }
     public void setDeliveredSmsCount(Long deliveredSmsCount) { this.deliveredSmsCount = deliveredSmsCount; }

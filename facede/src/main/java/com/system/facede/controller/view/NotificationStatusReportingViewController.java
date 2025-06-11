@@ -19,7 +19,6 @@ public class NotificationStatusReportingViewController {
     public String getNotificationStatusReport(Model model) {
         NotificationStatusReportDTO statusReport = notificationStatusReportingService.getNotificationStatusReport();
 
-        // Add the whole DTO to model to use in Thymeleaf if needed
         model.addAttribute("statusReport", statusReport);
 
         // Also add individual attributes for easier Thymeleaf binding
@@ -35,7 +34,6 @@ public class NotificationStatusReportingViewController {
         model.addAttribute("failedPostalCount", statusReport.getFailedPostalCount());
         model.addAttribute("pendingPostalCount", statusReport.getPendingPostalCount());
 
-        // Return the Thymeleaf template path
         return "/reports/notification-status-report";
     }
 }

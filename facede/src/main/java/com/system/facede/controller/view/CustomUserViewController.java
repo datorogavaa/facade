@@ -2,18 +2,13 @@ package com.system.facede.controller.view;
 
 import com.system.facede.model.CustomUser;
 import com.system.facede.service.CustomUserService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @PreAuthorize("hasRole('ADMIN')")
@@ -102,7 +97,6 @@ public class CustomUserViewController {
     public String updateUser(@ModelAttribute("user") CustomUser user, Model model) {
         Long currentUserId = user.getId();
 
-        // Check email uniqueness
         Optional<CustomUser> existingEmail = customUserService.findByEmail(user.getEmail());
         if (existingEmail.isPresent() && !existingEmail.get().getId().equals(currentUserId)) {
             model.addAttribute("errorMessage", "A user with this email already exists.");
@@ -110,7 +104,6 @@ public class CustomUserViewController {
             return "users/edit";
         }
 
-        // Check username uniqueness
         Optional<CustomUser> existingName = customUserService.findByName(user.getName());
         if (existingName.isPresent() && !existingName.get().getId().equals(currentUserId)) {
             model.addAttribute("errorMessage", "A user with this username already exists.");
@@ -118,7 +111,6 @@ public class CustomUserViewController {
             return "users/edit";
         }
 
-        // Check phone number uniqueness
         Optional<CustomUser> existingPhone = customUserService.findByPhoneNumber(user.getPhoneNumber());
         if (existingPhone.isPresent() && !existingPhone.get().getId().equals(currentUserId)) {
             model.addAttribute("errorMessage", "A user with this phone number already exists.");
@@ -126,7 +118,6 @@ public class CustomUserViewController {
             return "users/edit";
         }
 
-        // Save and redirect
         customUserService.save(user);
         return "redirect:/users";
     }

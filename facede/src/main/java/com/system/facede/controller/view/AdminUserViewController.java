@@ -95,12 +95,10 @@ public class AdminUserViewController {
         List<CustomUser> users = customUserService.getAll();
         model.addAttribute("users", users);
 
-        // Add addresses
         List<Address> addresses = addressService.getAll();
         model.addAttribute("addresses", addresses);
 
 
-        // Add summary card values
         model.addAttribute("totalCustomers", users.size());
         model.addAttribute("totalEmails", optInReport.getEmailOptInCount());
         model.addAttribute("optedInSms", optInReport.getSmsOptInCount());
