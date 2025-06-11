@@ -16,7 +16,7 @@ public class AdminInitializer {
                 AdminUser superAdmin = new AdminUser();
                 superAdmin.setUsername("superadmin");
                 superAdmin.setPassword("superpassword");
-                superAdmin.setRole("ROLE_SUPER_ADMIN");
+                superAdmin.setRole("SUPER_ADMIN");
                 adminUserService.save(superAdmin);
             }
         };

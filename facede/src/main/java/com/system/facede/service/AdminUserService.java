@@ -52,7 +52,9 @@ public class AdminUserService {
         }
         String encodedPassword = passwordEncoder.encode(adminUser.getPassword());
         adminUser.setPassword(encodedPassword);
-
+        if (adminUser.getRole() == null || adminUser.getRole().isBlank()) {
+            adminUser.setRole("ADMIN");
+        }
         return adminUserRepository.save(adminUser);
     }
 

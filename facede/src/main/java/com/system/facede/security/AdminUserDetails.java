@@ -17,7 +17,7 @@ public class AdminUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(() -> adminUser.getRole());
+        return Collections.singleton(() -> "ROLE_" + adminUser.getRole().toUpperCase());
     }
 
     public AdminUser getAdminUser() {
