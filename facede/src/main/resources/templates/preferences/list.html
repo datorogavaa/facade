@@ -11,6 +11,10 @@
     <div class="sidebar-title">Customer Notification<br>Business Facade System</div>
     <nav>
       <a th:href="@{/admin/dashboard}" class="sidebar-link">Dashboard</a>
+      <th:block th:if="${#authentication.name == 'superadmin'}">
+        <a th:href="@{/admin/list}" class="sidebar-link active">Admin Users</a>
+      </th:block>
+
       <a th:href="@{/users}" class="sidebar-link">Customers</a>
       <a th:href="@{/addresses}" class="sidebar-link">Addresses</a>
       <a th:href="@{/notification-preferences}" class="sidebar-link active">Preferences</a>
@@ -27,63 +31,21 @@
         <button class="btn-primary" th:onclick="'location.href=\'/notification-preferences/create\''">Add New</button>
       </div>
 
-      <!-- Search and Filter Form -->
-      <form th:action="@{/notification-preferences}" method="get" class="search-form" style="margin-bottom: 1em;">
-        <input type="text" name="username" placeholder="Search by user" th:value="${param.username}" />
-
-        <select name="preferenceType">
-          <option value="">All Preferences</option>
-          <option value="email" th:selected="${param.preferenceType == 'email'}">Email Enabled</option>
-          <option value="sms" th:selected="${param.preferenceType == 'sms'}">SMS Enabled</option>
-          <option value="postal" th:selected="${param.preferenceType == 'postal'}">Postal Enabled</option>
-        </select>
-
-        <input type="hidden" name="sortField" th:value="${sortField}" />
-        <input type="hidden" name="sortDir" th:value="${sortDir}" />
-
-        <button type="submit" class="btn-primary">Search</button>
-      </form>
-
       <!-- Table -->
       <div class="card">
         <table>
           <thead>
           <tr>
             <th>
-              <a th:href="@{/notification-preferences(
-                  username=${param.username},
-                  preferenceType=${param.preferenceType},
-                  sortField='customUser.name',
-                  sortDir=${sortField == 'customUser.name' and sortDir == 'asc' ? 'desc' : 'asc'})}">
-                User <span th:text="${sortField == 'customUser.name' ? (sortDir == 'asc' ? '↑' : '↓') : ''}"></span>
-              </a>
+                User
             </th>
             <th>
-              <a th:href="@{/notification-preferences(
-                  username=${param.username},
-                  preferenceType=${param.preferenceType},
-                  sortField='emailEnabled',
-                  sortDir=${sortField == 'emailEnabled' and sortDir == 'asc' ? 'desc' : 'asc'})}">
-                Email Enabled <span th:text="${sortField == 'emailEnabled' ? (sortDir == 'asc' ? '↑' : '↓') : ''}"></span>
-              </a>
+                Email Enabled
             </th>
             <th>
-              <a th:href="@{/notification-preferences(
-                  username=${param.username},
-                  preferenceType=${param.preferenceType},
-                  sortField='smsEnabled',
-                  sortDir=${sortField == 'smsEnabled' and sortDir == 'asc' ? 'desc' : 'asc'})}">
-                SMS Enabled <span th:text="${sortField == 'smsEnabled' ? (sortDir == 'asc' ? '↑' : '↓') : ''}"></span>
-              </a>
+                SMS Enabled
             </th>
-            <th>
-              <a th:href="@{/notification-preferences(
-                  username=${param.username},
-                  preferenceType=${param.preferenceType},
-                  sortField='postalEnabled',
-                  sortDir=${sortField == 'postalEnabled' and sortDir == 'asc' ? 'desc' : 'asc'})}">
-                Postal Enabled <span th:text="${sortField == 'postalEnabled' ? (sortDir == 'asc' ? '↑' : '↓') : ''}"></span>
-              </a>
+            <th>Postal Enabled
             </th>
             <th></th>
           </tr>

@@ -11,6 +11,10 @@
         <div class="sidebar-title">Customer Notification<br>Business Facade System</div>
         <nav>
             <a th:href="@{/admin/dashboard}" class="sidebar-link">Dashboard</a>
+            <th:block th:if="${#authentication.name == 'superadmin'}">
+                <a th:href="@{/admin/list}" class="sidebar-link active">Admin Users</a>
+            </th:block>
+
             <a th:href="@{/users}" class="sidebar-link">Customers</a>
             <a th:href="@{/addresses}" class="sidebar-link active">Addresses</a>
             <a th:href="@{/notification-preferences}" class="sidebar-link">Preferences</a>
@@ -22,6 +26,12 @@
     <main class="dashboard-main">
         <section class="dashboard-section" style="max-width: 480px;">
             <h2>Create Address</h2>
+
+            <!-- Display error if present -->
+            <div th:if="${errorMessage}" class="error-message" style="color: red; margin-bottom: 16px;">
+                <p th:text="${errorMessage}"></p>
+            </div>
+
             <form th:action="@{/addresses}" th:object="${address}" method="post" class="form-create-address">
                 <div>
                     <label>Type:
@@ -39,7 +49,8 @@
                 </div>
                 <div>
                     <label>User:
-                        <select th:field="*{customUser.id}">
+                        <select th:field="*{customUser.id}" required>
+                            <option value="" disabled selected>Select user</option>
                             <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.name}"></option>
                         </select>
                     </label>

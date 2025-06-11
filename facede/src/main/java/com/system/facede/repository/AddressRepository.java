@@ -6,5 +6,8 @@ import java.util.List;
 
 public interface AddressRepository extends JpaRepository<Address, Long> {
     List<Address> findByCustomUserId(Long customUserId);
+
+    boolean existsByTypeAndValueAndCustomUserId(String type, String value, Long customUserId);
+
 }
 

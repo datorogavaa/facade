@@ -59,10 +59,30 @@ public class CustomUserViewController {
     }
 
     @PostMapping
-    public String createUser(@ModelAttribute CustomUser user) {
+    public String createUser(@ModelAttribute CustomUser user, Model model) {
+        if (user.getEmail() != null && customUserService.existsByEmail(user.getEmail())) {
+            model.addAttribute("errorMessage", "A user with this email already exists.");
+            model.addAttribute("user", user);
+            return "users/create";
+        }
+
+        if (user.getName() != null && customUserService.existsByName(user.getName())) {
+            model.addAttribute("errorMessage", "A user with this username already exists.");
+            model.addAttribute("user", user);
+            return "users/create";
+        }
+
+        if (user.getPhoneNumber() != null && customUserService.existsByPhoneNumber(user.getPhoneNumber())) {
+            model.addAttribute("errorMessage", "A user with this phone number already exists.");
+            model.addAttribute("user", user);
+            return "users/create";
+        }
+
         customUserService.save(user);
         return "redirect:/users";
     }
+
+
 
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
@@ -79,10 +99,35 @@ public class CustomUserViewController {
 
 
     @PostMapping("/update")
-    public String updateUser(@ModelAttribute("user") CustomUser user, BindingResult bindingResult) {
+    public String updateUser(@ModelAttribute("user") CustomUser user, Model model) {
+        // Check for duplicate email
+        if (user.getEmail() != null && customUserService.existsByEmail(user.getEmail())) {
+            model.addAttribute("errorMessage", "A user with this email already exists.");
+            model.addAttribute("user", user);
+            return "users/edit";
+        }
+
+        // Check for duplicate name
+        if (user.getName() != null && customUserService.existsByName(user.getName())) {
+            model.addAttribute("errorMessage", "A user with this username already exists.");
+            model.addAttribute("user", user);
+            return "users/edit";
+        }
+
+        // Check for duplicate phone number
+        if (user.getPhoneNumber() != null && customUserService.existsByPhoneNumber(user.getPhoneNumber())) {
+            model.addAttribute("errorMessage", "A user with this phone number already exists.");
+            model.addAttribute("user", user);
+            return "users/edit";
+        }
+
+        // Save and redirect
         customUserService.save(user);
         return "redirect:/users";
     }
+
+
+
 
 
     @GetMapping("/delete/{id}")

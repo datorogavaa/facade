@@ -27,5 +27,8 @@ public interface CustomUserRepository extends JpaRepository<CustomUser, Long> {
     List<CustomUser> findByNameContainingIgnoreCaseAndEmailContainingIgnoreCaseAndPhoneNumberContaining(
             String name, String email, String phoneNumber, Sort sort);
 
+    boolean existsByEmail(String email);
+    boolean existsByName(String name);
+    boolean existsByPhoneNumber(String phoneNumber);
 
 }

@@ -31,6 +31,14 @@ public class AddressService {
         return addressRepository.save(address);
     }
 
+    public boolean addressExists(Address address) {
+        return addressRepository.existsByTypeAndValueAndCustomUserId(
+                address.getType(),
+                address.getValue(),
+                address.getCustomUser().getId()
+        );
+    }
+
     public void delete(Long id) {
         addressRepository.deleteById(id);
     }

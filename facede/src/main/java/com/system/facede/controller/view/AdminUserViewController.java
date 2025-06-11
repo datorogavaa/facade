@@ -39,17 +39,13 @@ public class AdminUserViewController {
 
     @GetMapping("/list")
     public String listAdmins(Model model) {
-        model.addAttribute("admins", adminUserService.getAllAdmins());
+        model.addAttribute("adminUsers", adminUserService.getAllAdmins());
         return "admin/list";
     }
 
     @GetMapping("/new")
     public String showCreateForm(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-        if (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)) {
-            return "redirect:/admin/dashboard";
-        }
 
         model.addAttribute("admin", new AdminUser());
         return "admin/create";
@@ -140,6 +136,6 @@ public class AdminUserViewController {
     @GetMapping("/delete/{id}")
     public String deleteAdmin(@PathVariable Long id) {
         adminUserService.delete(id);
-        return "redirect:/admin/login";
+        return "redirect:/admin/dashboard";
     }
 }

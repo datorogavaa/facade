@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/notification-preferences")
@@ -32,10 +34,24 @@ public class NotificationPreferenceViewController {
 
     @GetMapping("/create")
     public String showCreateForm(Model model) {
+        List<CustomUser> allUsers = customUserService.getAll();
+        List<NotificationPreference> existingPreferences = preferenceService.getAll();
+
+
+        Set<Long> usedUserIds = existingPreferences.stream()
+                .filter(pref -> pref.getCustomUser() != null)
+                .map(pref -> pref.getCustomUser().getId())
+                .collect(Collectors.toSet());
+
+        List<CustomUser> availableUsers = allUsers.stream()
+                .filter(user -> !usedUserIds.contains(user.getId()))
+                .collect(Collectors.toList());
+
         model.addAttribute("preference", new NotificationPreference());
-        model.addAttribute("users", customUserService.getAll());
+        model.addAttribute("users", availableUsers);
         return "preferences/create";
     }
+
 
     @PostMapping
     public String createPreference(@ModelAttribute NotificationPreference preference) {

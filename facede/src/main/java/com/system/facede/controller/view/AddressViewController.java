@@ -36,10 +36,18 @@ public class AddressViewController {
     }
 
     @PostMapping
-    public String createAddress(@ModelAttribute Address address) {
+    public String createAddress(@ModelAttribute Address address, Model model) {
+        if (addressService.addressExists(address)) {
+            model.addAttribute("errorMessage", "Address already exists for this user.");
+            model.addAttribute("address", address);
+            model.addAttribute("users", customUserService.getAll());
+            return "addresses/create";
+        }
+
         addressService.save(address);
         return "redirect:/addresses";
     }
+
 
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {

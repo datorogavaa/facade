@@ -2,6 +2,9 @@ package com.system.facede.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -15,6 +18,7 @@ public class NotificationStatus {
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "custom_user_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private CustomUser customUser;
 
 

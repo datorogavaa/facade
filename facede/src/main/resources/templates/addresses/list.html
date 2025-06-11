@@ -11,6 +11,10 @@
     <div class="sidebar-title">Customer Notification<br>Business Facade System</div>
     <nav>
       <a th:href="@{/admin/dashboard}" class="sidebar-link">Dashboard</a>
+      <th:block th:if="${#authentication.name == 'superadmin'}">
+        <a th:href="@{/admin/list}" class="sidebar-link active">Admin Users</a>
+      </th:block>
+
       <a th:href="@{/users}" class="sidebar-link">Customers</a>
       <a th:href="@{/addresses}" class="sidebar-link active">Addresses</a>
       <a th:href="@{/notification-preferences}" class="sidebar-link">Preferences</a>
@@ -23,7 +27,7 @@
     <section class="dashboard-section">
       <div class="section-header">
         <h2>Addresses</h2>
-        <button class="btn-primary" th:onclick="'location.href=\'/addresses/new\''">Add New</button>
+        <a th:href="@{/addresses/new}" class="btn-primary">Add New</a>
       </div>
       <div class="card">
         <table>

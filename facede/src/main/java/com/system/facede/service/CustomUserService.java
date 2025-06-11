@@ -2,7 +2,9 @@ package com.system.facede.service;
 
 import com.system.facede.dto.CustomUserBatchUpdateRequest;
 import com.system.facede.model.CustomUser;
+import com.system.facede.model.NotificationPreference;
 import com.system.facede.repository.CustomUserRepository;
+import com.system.facede.repository.NotificationPreferenceRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -15,9 +17,11 @@ import java.util.Optional;
 @Service
 public class CustomUserService {
     private final CustomUserRepository customUserRepository;
-
-    public CustomUserService(CustomUserRepository customUserRepository) {
+    private final NotificationPreferenceRepository preferenceRepository;
+    public CustomUserService(CustomUserRepository customUserRepository,
+                             NotificationPreferenceRepository preferenceRepository) {
         this.customUserRepository = customUserRepository;
+        this.preferenceRepository = preferenceRepository;
     }
 
     public List<CustomUser> getAll() {
@@ -35,16 +39,34 @@ public class CustomUserService {
 
 
 
-
-
-
-
     public Optional<CustomUser> getById(Long id) {
         return customUserRepository.findById(id);
     }
 
     public CustomUser save(CustomUser user) {
-        return customUserRepository.save(user);
+        CustomUser savedUser = customUserRepository.save(user);
+
+        NotificationPreference defaultPref = new NotificationPreference();
+        defaultPref.setCustomUser(savedUser);
+        defaultPref.setEmailEnabled(true);
+        defaultPref.setSmsEnabled(false);
+        defaultPref.setPostalEnabled(false);
+
+        preferenceRepository.save(defaultPref);
+
+        return savedUser;
+    }
+
+    public boolean existsByEmail(String email) {
+        return customUserRepository.existsByEmail(email);
+    }
+
+    public boolean existsByName(String name) {
+        return customUserRepository.existsByName(name);
+    }
+
+    public boolean existsByPhoneNumber(String phoneNumber) {
+        return customUserRepository.existsByPhoneNumber(phoneNumber);
     }
 
 

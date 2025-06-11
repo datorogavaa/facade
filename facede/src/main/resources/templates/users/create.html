@@ -15,25 +15,36 @@
             <a th:href="@{/addresses}" class="sidebar-link">Addresses</a>
             <a th:href="@{/notification-preferences}" class="sidebar-link">Preferences</a>
             <a th:href="@{/notification-statuses}" class="sidebar-link">Statuses</a>
-            <a th:href="@{/reports/notification-status}" class="sidebar-link">Reports</a>
+            <a th:href="@{/reports/notification-status-reports}" class="sidebar-link">Reports</a>
             <a th:href="@{/logout}" class="sidebar-link logout-link">Logout</a>
         </nav>
     </aside>
+
     <main class="dashboard-main">
         <section class="dashboard-section" style="max-width: 480px;">
-            <h2>Create New User</h2>
-            <form th:action="@{/users}" th:object="${user}" method="post" class="form-user-create">
+            <h2>Create User</h2>
+
+            <!-- Error Message -->
+            <div th:if="${errorMessage}" class="error-message" style="color: red; margin-bottom: 16px;">
+                <p th:text="${errorMessage}"></p>
+            </div>
+
+            <form th:action="@{/users}" th:object="${user}" method="post" class="form-create-user">
                 <div>
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" th:field="*{name}" placeholder="Enter name" required />
+                    <label>Name:
+                        <input type="text" th:field="*{name}" required />
+                    </label>
                 </div>
                 <div>
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" th:field="*{email}" placeholder="Enter email" required />
+                    <label>Email:
+                        <input type="email" th:field="*{email}" required />
+                    </label>
                 </div>
                 <div>
-                    <label for="phoneNumber">Phone Number:</label>
-                    <input type="text" id="phoneNumber" th:field="*{phoneNumber}" minlength="9" maxlength="9" pattern="\d*" />                </div>
+                    <label>Phone Number:
+                        <input type="text" th:field="*{phoneNumber}" />
+                    </label>
+                </div>
                 <div style="margin-top: 18px;">
                     <button type="submit" class="btn-primary">Save</button>
                     <a th:href="@{/users}" class="cancel-link">Cancel</a>
