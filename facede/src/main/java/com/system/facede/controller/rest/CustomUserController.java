@@ -44,7 +44,7 @@ public class CustomUserController {
     }
 
     @PutMapping("/{id}")
-    public String updateUser(@PathVariable Long id, @RequestBody CustomUser updatedUser) {
+    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody CustomUser updatedUser) {
         Optional<CustomUser> optionalUser = customUserService.getById(id);
         if (optionalUser.isPresent()) {
             CustomUser existingUser = optionalUser.get();
@@ -52,11 +52,13 @@ public class CustomUserController {
             existingUser.setEmail(updatedUser.getEmail());
             existingUser.setPhoneNumber(updatedUser.getPhoneNumber());
             customUserService.save(existingUser);
-            return "User Updated Succesfully";
+            return ResponseEntity.ok("User Updated Succesfully");
         } else {
-            throw new RuntimeException("User not found with ID: " + id);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Custom user not found with ID: " + id);
         }
     }
+
 
 
     @PutMapping("/update-batch")

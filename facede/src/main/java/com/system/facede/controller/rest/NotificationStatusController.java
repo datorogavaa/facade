@@ -42,12 +42,12 @@ public class NotificationStatusController {
     }
 
     @PutMapping("/{id}")
-    public NotificationStatus updateStatus(@PathVariable Long id, @RequestBody NotificationStatus updated) {
+    public ResponseEntity<?> updateStatus(@PathVariable Long id, @RequestBody NotificationStatus updated) {
         Optional<NotificationStatus> optionalNotificationStatus = statusService.getById(id);
+
         if (optionalNotificationStatus.isPresent()) {
             NotificationStatus existing = optionalNotificationStatus.get();
 
-            // Update fields
             existing.setStatus(updated.getStatus());
             existing.setTimestamp(updated.getTimestamp());
             existing.setChannel(updated.getChannel());
@@ -55,11 +55,14 @@ public class NotificationStatusController {
             existing.setNote(updated.getNote());
             existing.setCustomUser(updated.getCustomUser());
 
-            return statusService.save(existing);
+            NotificationStatus saved = statusService.save(existing);
+            return ResponseEntity.ok(saved);
         } else {
-            throw new RuntimeException("Status not found with ID: " + id);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Status not found with ID: " + id);
         }
     }
+
 
 
     @DeleteMapping("/{id}")

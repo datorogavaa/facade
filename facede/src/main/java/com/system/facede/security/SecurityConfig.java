@@ -9,8 +9,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 @Configuration
 public class SecurityConfig {
 
@@ -31,11 +29,14 @@ public class SecurityConfig {
                         .requestMatchers("/admin/login").permitAll()
                         .requestMatchers("/admin/create").hasRole("SUPER_ADMIN")
                         .requestMatchers("/admin/new").hasRole("SUPER_ADMIN")
+                        .requestMatchers("/admin/list").hasAnyRole("SUPER_ADMIN")
                         .requestMatchers("/admin/**").hasAnyRole("ADMIN", "SUPER_ADMIN")
                         .requestMatchers("/addresses/**").hasAnyRole("ADMIN", "SUPER_ADMIN")
                         .requestMatchers("/statuses/**").hasAnyRole("ADMIN","SUPER_ADMIN")
                         .requestMatchers("/users/**").hasAnyRole("SUPER_ADMIN","ADMIN")
                         .requestMatchers("/notification-preferences/**").hasAnyRole("ADMIN", "SUPER_ADMIN")
+                        .requestMatchers("/api/admin-users/**").hasRole("SUPER_ADMIN")
+                        .requestMatchers("/api/**").hasAnyRole("ADMIN", "SUPER_ADMIN")
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())

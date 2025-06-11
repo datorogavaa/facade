@@ -52,24 +52,17 @@ public class AdminUserViewController {
     }
 
     @PostMapping("/create")
-    public String createAdmin(@ModelAttribute AdminUser adminUser, Model model) {
+    public String createAdmin(@ModelAttribute("admin") AdminUser adminUser, Model model) {
         try {
             adminUserService.save(adminUser);
             return "redirect:/admin/dashboard";
-        } catch (UsernameAlreadyExistsException e) {
-            model.addAttribute("errorMessage", e.getMessage());
-            model.addAttribute("admin", adminUser);
-            return "admin/create";
-        } catch (PasswordEmptyException e) {
-            model.addAttribute("errorMessage", e.getMessage());
-            model.addAttribute("admin", adminUser);
-            return "admin/create";
-        } catch (UsernameEmptyException e) {
+        } catch (UsernameAlreadyExistsException | PasswordEmptyException | UsernameEmptyException e) {
             model.addAttribute("errorMessage", e.getMessage());
             model.addAttribute("admin", adminUser);
             return "admin/create";
         }
     }
+
 
     @GetMapping("/login")
     public String showLoginForm() {

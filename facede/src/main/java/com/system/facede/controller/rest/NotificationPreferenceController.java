@@ -42,17 +42,23 @@ public class NotificationPreferenceController {
 
 
     @PostMapping("/{userId}")
-    public NotificationPreference createPreference(@PathVariable Long userId, @RequestBody NotificationPreference pref) {
-        CustomUser user = customUserRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+    public ResponseEntity<?> createPreference(@PathVariable Long userId, @RequestBody NotificationPreference pref) {
+        Optional<CustomUser> userOpt = customUserRepository.findById(userId);
 
-        pref.setCustomUser(user);
-        return preferenceService.save(pref);
+        if (userOpt.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Custom user not found with ID: " + userId);
+        }
+
+        pref.setCustomUser(userOpt.get());
+        NotificationPreference saved = preferenceService.save(pref);
+        return ResponseEntity.ok(saved);
     }
 
 
+
     @PutMapping("/{id}")
-    public NotificationPreference updatePreference(@PathVariable Long id, @RequestBody NotificationPreference updated) {
+    public ResponseEntity<?> updatePreference(@PathVariable Long id, @RequestBody NotificationPreference updated) {
         Optional<NotificationPreference> optionalPreference = preferenceService.getById(id);
         if (optionalPreference.isPresent()) {
             NotificationPreference existing = optionalPreference.get();
@@ -60,11 +66,15 @@ public class NotificationPreferenceController {
             existing.setSmsEnabled(updated.isSmsEnabled());
             existing.setPostalEnabled(updated.isPostalEnabled());
             existing.setCustomUser(updated.getCustomUser());
-            return preferenceService.save(existing);
+
+            NotificationPreference saved = preferenceService.save(existing);
+            return ResponseEntity.ok(saved);
         } else {
-            throw new RuntimeException("Preference not found with ID: " + id);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Preference not found with ID: " + id);
         }
     }
+
 
     @PostMapping("/batch")
     public ResponseEntity<String> updatePreferencesBatch(

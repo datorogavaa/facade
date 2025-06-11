@@ -44,18 +44,21 @@ public class AddressController {
     }
 
     @PutMapping("/{id}")
-    public Address updateAddress(@PathVariable Long id, @RequestBody Address updatedAddress) {
+    public ResponseEntity<?> updateAddress(@PathVariable Long id, @RequestBody Address updatedAddress) {
         Optional<Address> optionalAddress = addressService.getById(id);
         if (optionalAddress.isPresent()) {
             Address existing = optionalAddress.get();
             existing.setType(updatedAddress.getType());
             existing.setValue(updatedAddress.getValue());
             existing.setCustomUser(updatedAddress.getCustomUser());
-            return addressService.save(existing);
+            return ResponseEntity.ok(addressService.save(existing));
         } else {
-            throw new RuntimeException("Address not found with ID: " + id);
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body("Address not found with ID: " + id);
         }
     }
+
 
 
     @DeleteMapping("/{id}")
