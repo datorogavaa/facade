@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Login</title>
+  <style>
+    body.dashboard-body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #f5f6fa;
+    }
+    .dashboard-container {
+      width: 100%;
+      max-width: 400px;
+    }
+    .dashboard-main {
+      width: 100%;
+    }
+    .dashboard-section {
+      width: 100%;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .page-title {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #222;
+      margin: 0;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .alert {
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    .alert-error {
+      background: #ffeaea;
+      color: #d8000c;
+      border: 1px solid #d8000c;
+    }
+    .alert-success {
+      background: #eaffea;
+      color: #4f8a10;
+      border: 1px solid #4f8a10;
+    }
+    .form-login {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .form-label {
+      display: flex;
+      flex-direction: column;
+      font-size: 1rem;
+      color: #333;
+      gap: 6px;
+    }
+    .form-input {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      background: #fafbfc;
+      transition: border 0.2s;
+    }
+    .form-input:focus {
+      border: 1.5px solid #007bff;
+      outline: none;
+    }
+    .btn.btn-primary {
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 0;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn.btn-primary:hover {
+      background: #0056b3;
+    }
+    .form-footer-text {
+      text-align: center;
+      font-size: 0.95rem;
+      color: #555;
+      margin-top: 12px;
+    }
+    .link {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body class="dashboard-body">
+
+<div class="dashboard-container">
+  <main class="dashboard-main">
+    <section class="dashboard-section">
+      <div class="section-header">
+        <h2 class="page-title">Admin Login</h2>
+      </div>
+      <div class="card">
+        <div th:if="${param.error}" class="alert alert-error">
+          Invalid username or password
+        </div>
+        <div th:if="${param.logout}" class="alert alert-success">
+          You have been logged out successfully.
+        </div>
+        <form th:action="@{/admin/login}" method="post" onsubmit="return validateLoginForm()" class="form form-login">
+          <label class="form-label">
+            Username:
+            <input type="text" name="username" id="username" class="form-input" />
+          </label>
+          <label class="form-label">
+            Password:
+            <input type="password" name="password" id="password" class="form-input" />
+          </label>
+          <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+  function validateLoginForm() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if (!username) {
+          alert("Username is empty");
+          return false;
+      }
+      if (!password) {
+          alert("Password is empty");
+          return false;
+      }
+
+      return true;
+  }
+</script>
+
+</body>
+</html>

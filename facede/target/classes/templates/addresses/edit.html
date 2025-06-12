@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Create Address</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <style>
+        .card {
+          background: #fff;
+          border-radius: 10px;
+          box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+          padding: 32px 32px 24px 32px;
+          max-width: 420px;
+          margin: 0 auto;
+          border: 1px solid #e5e7eb;
+        }
+        .form-group {
+          margin-bottom: 20px;
+        }
+        .form-label {
+          display: block;
+          font-weight: 500;
+          margin-bottom: 8px;
+        }
+        .form-control, select {
+          width: 100%;
+          padding: 8px 12px;
+          border: 1px solid #d1d5db;
+          border-radius: 6px;
+          font-size: 1rem;
+          background: #f9fafb;
+        }
+        .btn-primary {
+          background: #2563eb;
+          color: #fff;
+          border: none;
+          border-radius: 6px;
+          padding: 10px 24px;
+          font-size: 1rem;
+          cursor: pointer;
+          font-weight: 500;
+          transition: background 0.2s;
+        }
+        .btn-primary:hover {
+          background: #1d4ed8;
+        }
+        .cancel-link {
+          margin-left: 16px;
+          color: #6b7280;
+          text-decoration: none;
+          font-size: 1rem;
+        }
+        .cancel-link:hover {
+          text-decoration: underline;
+        }
+        h2 {
+          margin-bottom: 24px;
+          font-size: 1.4rem;
+          font-weight: 600;
+        }
+    </style>
+</head>
+<body class="dashboard-body">
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <div class="sidebar-title">Customer Notification<br>Business Facade System</div>
+        <nav>
+            <a th:href="@{/admin/dashboard}" class="sidebar-link">Dashboard</a>
+            <th:block th:if="${#authentication.name == 'superadmin'}">
+                <a th:href="@{/admin/list}" class="sidebar-link active">Admin Users</a>
+            </th:block>
+            <a th:href="@{/users}" class="sidebar-link">Customers</a>
+            <a th:href="@{/addresses}" class="sidebar-link active">Addresses</a>
+            <a th:href="@{/notification-preferences}" class="sidebar-link">Preferences</a>
+            <a th:href="@{/notification-statuses}" class="sidebar-link">Statuses</a>
+            <a th:href="@{/reports/notification-status-reports}" class="sidebar-link">Reports</a>
+            <a th:href="@{/logout}" class="sidebar-link logout-link">Logout</a>
+        </nav>
+    </aside>
+
+    <main class="dashboard-main">
+        <section class="dashboard-section" style="max-width: 480px;">
+            <div class="card">
+                <h2>Create Address</h2>
+
+                <!-- Display error if present -->
+                <div th:if="${errorMessage}" class="error-message" style="color: red; margin-bottom: 16px;">
+                    <p th:text="${errorMessage}"></p>
+                </div>
+
+                <form th:action="@{/addresses}" th:object="${address}" method="post" class="form-create-address">
+                    <div class="form-group">
+                        <label class="form-label">Type</label>
+                        <select id="type-select" th:field="*{type}" class="form-control" required>
+                            <option value="Email">Email</option>
+                            <option value="SMS">SMS</option>
+                            <option value="Postal">Postal</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Address</label>
+                        <input id="address-input" type="text" th:field="*{value}" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">User</label>
+                        <select th:field="*{customUser.id}" class="form-control" required>
+                            <option value="" disabled selected>Select user</option>
+                            <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.name}"></option>
+                        </select>
+                    </div>
+                    <div style="margin-top: 18px;">
+                        <button type="submit" class="btn-primary">Save</button>
+                        <a th:href="@{/addresses}" class="cancel-link">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- JavaScript to switch input type -->
+<!-- JavaScript to switch input type and validation -->
+<script>
+    const typeSelect = document.getElementById('type-select');
+    const addressInput = document.getElementById('address-input');
+
+    function updateInputValidation() {
+        const selectedType = typeSelect.value;
+
+        addressInput.removeAttribute('minlength');
+        addressInput.removeAttribute('maxlength');
+        addressInput.removeAttribute('pattern');
+        addressInput.removeAttribute('inputmode');
+        addressInput.type = 'text';
+
+        if (selectedType === 'Email') {
+            addressInput.type = 'email';
+        } else if (selectedType === 'SMS') {
+            addressInput.type = 'text';
+            addressInput.setAttribute('inputmode', 'numeric');
+            addressInput.setAttribute('pattern', '\\d{9}');
+            addressInput.setAttribute('maxlength', '9');
+            addressInput.setAttribute('title', 'Enter exactly 9 digits for SMS');
+        } else if (selectedType === 'Postal') {
+            addressInput.type = 'text';
+            addressInput.setAttribute('inputmode', 'numeric');
+            addressInput.setAttribute('pattern', '\\d{6}');
+            addressInput.setAttribute('maxlength', '6');
+            addressInput.setAttribute('title', 'Enter exactly 6 digits for Postal');
+        }
+    }
+
+    updateInputValidation(); // apply on page load
+    typeSelect.addEventListener('change', updateInputValidation);
+</script>
+
+</body>
+</html>

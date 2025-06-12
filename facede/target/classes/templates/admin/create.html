@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Create Admin</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <style>
+        .card {
+          background: #fff;
+          border-radius: 10px;
+          box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+          padding: 32px 32px 24px 32px;
+          max-width: 420px;
+          margin: 0 auto;
+          border: 1px solid #e5e7eb;
+        }
+        .form-group {
+          margin-bottom: 20px;
+        }
+        .form-label {
+          display: block;
+          font-weight: 500;
+          margin-bottom: 8px;
+        }
+        .form-control {
+          width: 100%;
+          padding: 8px 12px;
+          border: 1px solid #d1d5db;
+          border-radius: 6px;
+          font-size: 1rem;
+          background: #f9fafb;
+        }
+        .btn-primary {
+          background: #2563eb;
+          color: #fff;
+          border: none;
+          border-radius: 6px;
+          padding: 10px 24px;
+          font-size: 1rem;
+          cursor: pointer;
+          font-weight: 500;
+          transition: background 0.2s;
+        }
+        .btn-primary:hover {
+          background: #1d4ed8;
+        }
+        .cancel-link {
+          margin-left: 16px;
+          color: #6b7280;
+          text-decoration: none;
+          font-size: 1rem;
+        }
+        .cancel-link:hover {
+          text-decoration: underline;
+        }
+        h2 {
+          margin-bottom: 24px;
+          font-size: 1.4rem;
+          font-weight: 600;
+        }
+    </style>
+</head>
+<body class="dashboard-body">
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <div class="sidebar-title">Customer Notification<br>Business Facade System</div>
+        <nav>
+            <a th:href="@{/admin/dashboard}" class="sidebar-link active">Dashboard</a>
+            <a th:href="@{/users}" class="sidebar-link">Customers</a>
+            <a th:href="@{/addresses}" class="sidebar-link">Addresses</a>
+            <a th:href="@{/notification-preferences}" class="sidebar-link">Preferences</a>
+            <a th:href="@{/notification-statuses}" class="sidebar-link">Statuses</a>
+            <a th:href="@{/reports/notification-status-reports}" class="sidebar-link">Reports</a>
+            <a th:href="@{/logout}" class="sidebar-link logout-link">Logout</a>
+        </nav>
+    </aside>
+
+    <main class="dashboard-main">
+        <section class="dashboard-section" style="max-width: 480px;">
+            <div class="card">
+                <h2>Create Admin</h2>
+
+                <!-- Error Message -->
+                <div th:if="${errorMessage}" class="error-message" style="color: red; margin-bottom: 16px;">
+                    <p th:text="${errorMessage}"></p>
+                </div>
+
+                <form th:action="@{/admin/create}" th:object="${admin}" method="post" class="form-create-user">
+                    <div class="form-group">
+                        <label class="form-label">Username</label>
+                        <input type="text" th:field="*{username}" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" th:field="*{password}" class="form-control" required />
+                    </div>
+                    <div style="margin-top: 18px;">
+                        <button type="submit" class="btn-primary">Save</button>
+                        <a th:href="@{/admin/login}" class="cancel-link">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>
